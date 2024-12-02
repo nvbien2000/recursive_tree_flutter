@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
 class LazyStackWidget<T extends AbsNodeType> extends StatefulWidget {
-  const LazyStackWidget({
+  const LazyStackWidget(
+    this.initData, {
     super.key,
-    required this.properties,
-    required this.listTrees,
-    required this.getNewAddedTreeChildren,
+    this.properties = const UIProperties(),
+    required this.fGetChildrenFunc,
   });
 
+  final List<TreeType<T>> initData;
   final UIProperties properties;
-  final List<TreeType<T>> listTrees;
 
   /// If this function not null, data was parsed to tree only 1 time; else
   /// data was parsed in run-time (lazy-loading).
-  final FunctionGetTreeChildren<T> getNewAddedTreeChildren;
+  final FGetChildrenFunc<T> fGetChildrenFunc;
 
   @override
   State<LazyStackWidget> createState() => _LazyStackWidgetState<T>();
@@ -22,11 +22,11 @@ class LazyStackWidget<T extends AbsNodeType> extends StatefulWidget {
 
 class _LazyStackWidgetState<T extends AbsNodeType>
     extends State<LazyStackWidget<T>> {
-  List<TreeType<T>> listTrees = [];
+  late List<TreeType<T>> listTrees;
 
   @override
   void initState() {
-    listTrees = widget.listTrees;
+    listTrees = widget.initData;
     super.initState();
   }
 
@@ -35,121 +35,99 @@ class _LazyStackWidgetState<T extends AbsNodeType>
     if (listTrees.isEmpty) {
       return widget.properties.emptyWidget;
     } else {
-      return _buildTreeView();
+      return Column(
+        children: [
+          _buildTopTitle(),
+          const SizedBox(height: 10),
+          _buildMainView(),
+        ],
+      );
     }
   }
 
-  Widget _buildTreeView() {
-    if (listTrees[0].parent == null) {
-      return _buildRootOfTree();
+  //****************************************************
+  //* BUILD UI
+  //****************************************************
+
+  Widget _buildTopTitle() {
+    Widget leading;
+    String title;
+
+    if (listTrees[0].isRoot) {
+      leading = const SizedBox();
+      title = widget.properties.title;
     } else {
-      return _buildOtherChildrenOfTree();
+      leading = IconButton(
+        icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        onPressed: _pressBackToParent,
+      );
+      title = listTrees[0].parent!.data.title;
     }
-  }
 
-  Widget _buildRootOfTree() {
-    return Column(
-      children: [
-        //? top title
-        ListTile(
-          trailing: IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          leading: const SizedBox(),
-          title: Text(
-            widget.properties.title,
-            textAlign: TextAlign.center,
-            style: widget.properties.titleStyle,
-          ),
-        ),
-        const SizedBox(height: 10),
-
-        //? main view
-        Expanded(
-          child: ListView.separated(
-            itemCount: listTrees.length,
-            itemBuilder: (_, int index) {
-              if (listTrees[index].isLeaf) {
-                return _buildLeafWidget(listTrees[index]);
-              } else {
-                return _buildInnerNodeWidget(listTrees[index]);
-              }
-            },
-            separatorBuilder: (_, __) => const Divider(),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildOtherChildrenOfTree() {
-    return Column(
-      children: [
-        //? top title is current tree's parent title
-        ListTile(
-          //? back button
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_outlined),
-            onPressed: _pressBackToParent,
-          ),
-          //? close button
-          trailing: IconButton(
-            icon: const Icon(Icons.close),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          //? title
-          title: Text(
-            listTrees[0].parent!.data.title,
-            style: widget.properties.titleStyle,
-            textAlign: TextAlign.center,
-          ),
-        ),
-        const SizedBox(height: 10),
-
-        //? main view
-        Expanded(
-          child: ListView.separated(
-            itemCount: listTrees.length,
-            itemBuilder: (BuildContext context, int index) {
-              var currentTree = listTrees[index];
-
-              if (currentTree.isLeaf) {
-                return _buildLeafWidget(listTrees[index]);
-              } else {
-                return _buildInnerNodeWidget(currentTree);
-              }
-            },
-            separatorBuilder: (_, __) => const Divider(),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildLeafWidget(TreeType<T> leaf) {
     return ListTile(
-      onTap: () {},
+      leading: leading,
+      trailing: IconButton(
+        icon: const Icon(Icons.close),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
       title: Text(
-        leaf.data.title,
+        title,
+        textAlign: TextAlign.center,
+        style: widget.properties.titleStyle,
+        maxLines: widget.properties.titleMaxLines,
+      ),
+    );
+  }
+
+  Widget _buildMainView() {
+    return Expanded(
+      child: ListView.separated(
+        itemCount: listTrees.length,
+        separatorBuilder: (_, __) => const Divider(),
+        itemBuilder: (_, i) => _buildNodeWidget(listTrees[i]),
+      ),
+    );
+  }
+
+  Widget _buildNodeWidget(TreeType<T> tree) {
+    final listTileOnTap = tree.isLeaf ? null : () => _pressInnerNode(tree);
+
+    var title = tree.data.title;
+    if (!tree.isLeaf) {
+      if (tree.isChildrenLoadedLazily) {
+        title += " (${tree.children.length})";
+      } else {
+        title += " (...)";
+      }
+    }
+
+    final leading = widget.properties.leafLeadingWidget;
+    final checkBoxTristate = tree.isLeaf ? false : true;
+
+    return ListTile(
+      onTap: listTileOnTap,
+      title: Text(
+        title,
         style: widget.properties.nodeTextStyle,
       ),
-      leading: widget.properties.leafLeadingWidget,
+      leading: leading,
       trailing: Checkbox(
-        side: leaf.data.isUnavailable
+        tristate: checkBoxTristate,
+        side: tree.data.isUnavailable
             ? const BorderSide(color: Colors.grey, width: 1.0)
             : BorderSide(color: Theme.of(context).primaryColor, width: 1.0),
-        value: leaf.data.isChosen,
+        value: tree.data.isUnavailable ? false : tree.data.isChosen,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(4)),
         ),
-        //! leaf [isChosen] is always true or false, cannot be null
-        onChanged: leaf.data.isUnavailable
+        activeColor: tree.data.isUnavailable
+            ? Colors.grey
+            : Theme.of(context).primaryColor,
+        onChanged: tree.data.isUnavailable
             ? null
             : (value) {
-                // leaf always has bool value (not null).
                 setState(() => updateTreeMultipleChoice(
-                      leaf,
+                      tree,
                       value,
                       isThisLazyTree: true,
                     ));
@@ -158,66 +136,38 @@ class _LazyStackWidgetState<T extends AbsNodeType>
     );
   }
 
-  Widget _buildInnerNodeWidget(TreeType<T> innerNode) {
-    return ListTile(
-      onTap: () => _pressInnerNode(innerNode),
-      tileColor: null,
-      title: Text(
-        innerNode.data.title,
-        style: widget.properties.nodeTextStyle,
-      ),
-      leading: widget.properties.innerNodeLeadingWidget,
-      trailing: Checkbox(
-        tristate: true,
-        side: innerNode.data.isUnavailable
-            ? const BorderSide(color: Colors.grey, width: 1.0)
-            : BorderSide(color: Theme.of(context).primaryColor, width: 1.0),
-        value: innerNode.data.isUnavailable ? false : innerNode.data.isChosen,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-        ),
-        activeColor: innerNode.data.isUnavailable
-            ? Colors.grey
-            : Theme.of(context).primaryColor,
-        onChanged: innerNode.data.isUnavailable
-            ? null
-            : (value) => setState(() => updateTreeMultipleChoice(
-                  innerNode,
-                  value,
-                  isThisLazyTree: true,
-                )),
-      ),
-    );
-  }
+  //****************************************************
+  //* PRESS FUNCTIONS
+  //****************************************************
 
   void _pressBackToParent() {
     setState(() {
-      var parentOfCurrentTrees = listTrees[0].parent!;
-      // is this parent already root?
-      if (parentOfCurrentTrees.isRoot) {
-        listTrees = [parentOfCurrentTrees];
+      var parent = listTrees[0].parent!;
+
+      if (parent.isRoot) {
+        listTrees = [parent];
       } else {
-        var parentOfParentOfCurrentTree = parentOfCurrentTrees.parent!;
-        listTrees = parentOfParentOfCurrentTree.children;
+        var grandparents = parent.parent!;
+        listTrees = grandparents.children;
       }
     });
   }
 
-  void _pressInnerNode(TreeType<T> innerNode) {
-    /// children was loaded before -> call it existed children & return
+  Future<void> _pressInnerNode(TreeType<T> innerNode) async {
+    /// children were loaded before -> just return
     if (innerNode.isChildrenLoadedLazily) {
       if (innerNode.children.isEmpty) return;
       setState(() => listTrees = innerNode.children);
       return;
     }
 
-    /// mark current tree (inner node)'s [isChildrenLoadedLazily = true]
+    /// mark current tree with [isChildrenLoadedLazily] = true
+    var newChildren = await widget.fGetChildrenFunc(innerNode);
     innerNode.isChildrenLoadedLazily = true;
-    var newAddedTreeChildren = widget.getNewAddedTreeChildren(innerNode);
 
     /// if inner node has no children, mark it as unavailable & not chosen,
     /// then update tree and -> `return`
-    if (newAddedTreeChildren.isEmpty) {
+    if (newChildren.isEmpty) {
       var snackBar = const SnackBar(content: Text("This one has no children"));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       setState(() {
@@ -235,11 +185,11 @@ class _LazyStackWidgetState<T extends AbsNodeType>
     /// else, update new children's `isChosen` properties in case of current
     /// tree has `isChosen = true`, then continue call stack
     if (innerNode.data.isChosen == true) {
-      for (var e in newAddedTreeChildren) {
+      for (var e in newChildren) {
         if (!e.data.isUnavailable) e.data.isChosen = true;
       }
     }
-    innerNode.children.addAll(newAddedTreeChildren);
-    setState(() => listTrees = newAddedTreeChildren);
+    innerNode.children.addAll(newChildren);
+    setState(() => listTrees = newChildren);
   }
 }

@@ -1,9 +1,11 @@
+import 'package:example/helpers/ex_traversal_func.dart';
+import 'package:example/widgets/btn2.dart';
+import 'package:example/widgets/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
 import '../../data/example_lazy_stack_data.dart';
 
-/// data was parsed in run-time
 class ExLazyStackScreen extends StatefulWidget {
   const ExLazyStackScreen({super.key});
 
@@ -14,6 +16,7 @@ class ExLazyStackScreen extends StatefulWidget {
 class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
   List<TreeType<EasyNodeType>> listTrees = [];
   final String searchingText = "3";
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -24,81 +27,70 @@ class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Lazy Stack Tree (multiple choice)")),
-      body: Column(
+      appBar: AppBar(title: const Text("LazyStackWidget (multiple choice)")),
+      body: Stack(
         children: [
-          const SizedBox(height: 30),
-          Container(
-            color: Colors.white,
-            child: const Text(
-              "Need help? Mail me: nvbien2000@gmail.com",
-              style: TextStyle(color: Colors.red),
-            ),
-          ),
-          const Divider(
-            thickness: 2,
-            height: 60,
-          ),
-          Expanded(
-            child: LazyStackWidget(
-              properties: UIProperties(
-                title: "YOU REACH THE ROOTS",
-                titleStyle: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+          SafeArea(
+            child: Column(
+              children: [
+                divider,
+                Expanded(
+                  child: LazyStackWidget(
+                    listTrees,
+                    properties: const UIProperties(
+                      title: "YOU REACH THE ROOTS",
+                      titleStyle: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    fGetChildrenFunc: fGetChildrenFunc,
+                  ),
                 ),
-              ),
-              listTrees: listTrees,
-              getNewAddedTreeChildren: getNewAddedTreeChildren,
+                divider,
+                GridView.count(
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  childAspectRatio: 4,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  shrinkWrap: true,
+                  children: [
+                    Btn2(
+                      title: "Chosen leaves",
+                      onTap: () => chosenLeaves(context, listTrees[0]),
+                    ),
+                    Btn2(
+                      title: "Chosen nodes",
+                      onTap: () => chosenNodes(context, listTrees[0]),
+                    ),
+                    Btn2(
+                      title: "Search leaves contain \"2\"",
+                      onTap: () => searchLeaves(context, "2", listTrees[0]),
+                    ),
+                    Btn2(
+                      title: "Search nodes contain \"2\"",
+                      onTap: () => searchNodes(context, "2", listTrees[0]),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
-          const Divider(
-            thickness: 2,
-            height: 60,
-          ),
-          OutlinedButton(
-            onPressed: () {
-              List<TreeType<EasyNodeType>> result = [];
-              var root = findRoot(listTrees[0]);
-              returnChosenNodes(root, result);
-              String resultTxt = "";
-              for (var e in result) {
-                resultTxt += "\n${e.data.title}";
-              }
-              if (resultTxt.isEmpty) resultTxt = "\nnone";
-
-              var snackBar = SnackBar(content: Text(resultTxt));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            },
-            child: const Text("Which nodes were chosen? (not full data)"),
-          ),
-          OutlinedButton(
-            onPressed: () {
-              List<TreeType<EasyNodeType>> result = [];
-              var root = findRoot(listTrees[0]);
-              searchAllTreesWithTitleDFS(root, searchingText, result);
-              String resultTxt = "";
-              for (var e in result) {
-                resultTxt += "${e.data.title}\n";
-              }
-              if (resultTxt.isEmpty) resultTxt = "none";
-
-              var snackBar = SnackBar(content: Text(resultTxt));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            },
-            child: Text(
-                "Which nodes contain text='$searchingText'? (not full data)"),
-          ),
-          const SizedBox(height: 30),
+          _buildLoading(),
         ],
       ),
     );
   }
 
-  List<TreeType<EasyNodeType>> getNewAddedTreeChildren(
-      TreeType<EasyNodeType> parent) {
+  Future<List<TreeType<EasyNodeType>>> fGetChildrenFunc(
+      TreeType<EasyNodeType> parent) async {
     List<TreeType<EasyNodeType>> newChildren;
     String parentTitle = parent.data.title;
+
+    setState(() => isLoading = true);
+    await Future.delayed(const Duration(seconds: 1));
+    setState(() => isLoading = false);
 
     if (parentTitle.contains("0")) {
       newChildren = createChildrenOfRoot();
@@ -117,5 +109,18 @@ class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
     }
 
     return newChildren;
+  }
+
+  Widget _buildLoading() {
+    if (isLoading) {
+      return Container(
+        color: Colors.black.withOpacity(0.3),
+        child: const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    } else {
+      return const SizedBox.shrink();
+    }
   }
 }

@@ -8,7 +8,6 @@ import '../../data/example_stack_data.dart';
 import '../../widgets/btn2.dart';
 import '../../widgets/divider.dart';
 
-/// data was parsed 1 time
 class ExStackScreen extends StatefulWidget {
   const ExStackScreen({super.key});
 

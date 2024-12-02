@@ -11,8 +11,8 @@ class StackWidget<T extends AbsNodeType> extends StatefulWidget {
     this.properties = const UIProperties(),
   });
 
-  final UIProperties properties;
   final List<TreeType<T>> initData;
+  final UIProperties properties;
 
   @override
   State<StackWidget> createState() => _StackWidgetState<T>();
@@ -47,38 +47,33 @@ class _StackWidgetState<T extends AbsNodeType> extends State<StackWidget<T>> {
   //****************************************************
 
   Widget _buildTopTitle() {
-    if (listTrees[0].parent == null) {
-      return ListTile(
-        leading: const SizedBox(),
-        trailing: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: Text(
-          widget.properties.title,
-          textAlign: TextAlign.center,
-          style: widget.properties.titleStyle,
-          maxLines: widget.properties.titleMaxLines,
-        ),
-      );
+    Widget leading;
+    String title;
+
+    if (listTrees[0].isRoot) {
+      leading = const SizedBox();
+      title = widget.properties.title;
     } else {
-      return ListTile(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-          onPressed: _pressBackToParent,
-        ),
-        trailing: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: Text(
-          listTrees[0].parent!.data.title,
-          style: widget.properties.titleStyle,
-          textAlign: TextAlign.center,
-          maxLines: widget.properties.titleMaxLines,
-        ),
+      leading = IconButton(
+        icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        onPressed: _pressBackToParent,
       );
+      title = listTrees[0].parent!.data.title;
     }
+
+    return ListTile(
+      leading: leading,
+      trailing: IconButton(
+        icon: const Icon(Icons.close),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
+      title: Text(
+        title,
+        textAlign: TextAlign.center,
+        style: widget.properties.titleStyle,
+        maxLines: widget.properties.titleMaxLines,
+      ),
+    );
   }
 
   Widget _buildMainView() {
