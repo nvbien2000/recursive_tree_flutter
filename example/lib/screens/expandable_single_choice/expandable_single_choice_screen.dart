@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/custom_outlined_btn.dart';
+import '../../widgets/btn1.dart';
 import 'ex_lazy_tree_single_choice.dart';
 import 'ex_tree_single_choice.dart';
 import 'ex_vietnam_regions.dart';
@@ -25,17 +25,17 @@ class _ExpandableSingleChoiceScreenState
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomOutlinedButton(
+            Btn1(
               screen: ExTreeSingleChoice(),
               title: "Expandable Tree\nsingle choice - parse data 1 time",
             ),
             SizedBox(height: 20),
-            CustomOutlinedButton(
+            Btn1(
               screen: ExLazyTreeSingleChoice(),
               title: "Expandable Tree\nsingle choice - lazy loading",
             ),
             SizedBox(height: 20),
-            CustomOutlinedButton(
+            Btn1(
               screen: ExVNRegionsTree(),
               title: "Vietnam regions tree",
             ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../../models/custom_node_type.dart';
 import '../../data/example_vts_department_data.dart';
 
 class ExTreeSingleChoice extends StatefulWidget {
@@ -12,7 +11,7 @@ class ExTreeSingleChoice extends StatefulWidget {
 }
 
 class _ExTreeSingleChoiceState extends State<ExTreeSingleChoice> {
-  late TreeType<CustomNodeType> _tree;
+  late TreeType<EasyNodeType> _tree;
   final TextEditingController _textController = TextEditingController();
 
   @override
@@ -74,7 +73,7 @@ class _VTSNodeWidget extends StatefulWidget {
     required this.onNodeDataChanged,
   });
 
-  final TreeType<CustomNodeType> tree;
+  final TreeType<EasyNodeType> tree;
 
   /// IMPORTANT: Because this library **DOESN'T** use any state management
   /// library, therefore I need to use call back function like this - although
@@ -86,7 +85,7 @@ class _VTSNodeWidget extends StatefulWidget {
 }
 
 class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
-    with SingleTickerProviderStateMixin, ExpandableTreeMixin<CustomNodeType> {
+    with SingleTickerProviderStateMixin, ExpandableTreeMixin<EasyNodeType> {
   final Tween<double> _turnsTween = Tween<double>(begin: -0.25, end: 0.0);
 
   @override
@@ -184,8 +183,7 @@ class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
   //* __________________________________________________________________________
 
   @override
-  List<Widget> generateChildrenNodesWidget(
-          List<TreeType<CustomNodeType>> list) =>
+  List<Widget> generateChildrenNodesWidget(List<TreeType<EasyNodeType>> list) =>
       List.generate(
         list.length,
         (int index) => _VTSNodeWidget(

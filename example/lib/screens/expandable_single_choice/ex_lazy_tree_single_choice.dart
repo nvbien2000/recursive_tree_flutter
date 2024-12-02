@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../../models/custom_node_type.dart';
 import '../../data/example_lazy_stack_data.dart';
 
 class ExLazyTreeSingleChoice extends StatefulWidget {
@@ -12,7 +11,7 @@ class ExLazyTreeSingleChoice extends StatefulWidget {
 }
 
 class _ExLazyTreeSingleChoiceState extends State<ExLazyTreeSingleChoice> {
-  late TreeType<CustomNodeType> _tree;
+  late TreeType<EasyNodeType> _tree;
 
   @override
   void initState() {
@@ -47,7 +46,7 @@ class _VTSNodeWidget extends StatefulWidget {
     required this.onNodeDataChanged,
   });
 
-  final TreeType<CustomNodeType> tree;
+  final TreeType<EasyNodeType> tree;
 
   /// IMPORTANT: Because this library **DOESN'T** use any state management
   /// library, therefore I need to use call back function like this - although
@@ -59,7 +58,7 @@ class _VTSNodeWidget extends StatefulWidget {
 }
 
 class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
-    with SingleTickerProviderStateMixin, ExpandableTreeMixin<CustomNodeType> {
+    with SingleTickerProviderStateMixin, ExpandableTreeMixin<EasyNodeType> {
   final Tween<double> _turnsTween = Tween<double>(begin: -0.25, end: 0.0);
   bool _showLoading = false;
 
@@ -169,8 +168,7 @@ class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
   //* __________________________________________________________________________
 
   @override
-  List<Widget> generateChildrenNodesWidget(
-          List<TreeType<CustomNodeType>> list) =>
+  List<Widget> generateChildrenNodesWidget(List<TreeType<EasyNodeType>> list) =>
       List.generate(
         list.length,
         (int index) => _VTSNodeWidget(
@@ -227,9 +225,9 @@ class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
 
 //! __________________________________________________________________________
 
-List<TreeType<CustomNodeType>> getNewAddedTreeChildren(
-    TreeType<CustomNodeType> parent) {
-  List<TreeType<CustomNodeType>> newChildren;
+List<TreeType<EasyNodeType>> getNewAddedTreeChildren(
+    TreeType<EasyNodeType> parent) {
+  List<TreeType<EasyNodeType>> newChildren;
   String parentTitle = parent.data.title;
 
   if (parentTitle.contains("0")) {

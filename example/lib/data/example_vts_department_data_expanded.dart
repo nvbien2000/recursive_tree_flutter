@@ -1,70 +1,70 @@
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../models/custom_node_type.dart';
+import '../models/ex.dart';
 
-TreeType<CustomNodeType> sampleTreeExpanded<T extends AbsNodeType>() {
-  var root = TreeType<CustomNodeType>(
-    data: CustomNodeType.sampleInnerExpanded("0"),
+TreeType<EasyNodeType> sampleTreeExpanded<T extends AbsNodeType>() {
+  var root = TreeType<EasyNodeType>(
+    data: Ex.sampleInnerExpanded("0"),
     children: [],
     parent: null,
   );
 
 //? ------------------ lv 1
 
-  var lv1_1 = TreeType<CustomNodeType>(
-    data: CustomNodeType.sampleInnerExpanded("1.1"),
+  var lv1_1 = TreeType<EasyNodeType>(
+    data: Ex.sampleInnerExpanded("1.1"),
     children: [],
     parent: null,
   );
 
-  var lv1_2 = TreeType<CustomNodeType>(
-    data: CustomNodeType.sampleInnerExpanded("1.2"),
+  var lv1_2 = TreeType<EasyNodeType>(
+    data: Ex.sampleInnerExpanded("1.2"),
     children: [],
     parent: null,
   );
 
 //? ------------------ lv 2
 
-  var lv2_1 = TreeType<CustomNodeType>(
-    data: CustomNodeType.sampleInnerExpanded("2.1"),
+  var lv2_1 = TreeType<EasyNodeType>(
+    data: Ex.sampleInnerExpanded("2.1"),
     children: [],
     parent: null,
   );
 
-  var lv2_2 = TreeType<CustomNodeType>(
-    data: CustomNodeType.sampleInnerExpanded("2.2"),
+  var lv2_2 = TreeType<EasyNodeType>(
+    data: Ex.sampleInnerExpanded("2.2"),
     children: [],
     parent: null,
   );
 
-  var lv2_3 = TreeType<CustomNodeType>(
-    data: CustomNodeType.sampleInnerExpanded("2.3"),
+  var lv2_3 = TreeType<EasyNodeType>(
+    data: Ex.sampleInnerExpanded("2.3"),
     children: [],
     parent: null,
   );
 
 //? ------------------ lv 3
 
-  var lv3_1 = TreeType<CustomNodeType>(
-    data: CustomNodeType.sampleLeafExpanded("3.1"),
+  var lv3_1 = TreeType<EasyNodeType>(
+    data: Ex.sampleLeafExpanded("3.1"),
     children: [],
     parent: null,
   );
 
-  var lv3_2 = TreeType<CustomNodeType>(
-    data: CustomNodeType.sampleLeafExpanded("3.2"),
+  var lv3_2 = TreeType<EasyNodeType>(
+    data: Ex.sampleLeafExpanded("3.2"),
     children: [],
     parent: null,
   );
 
-  var lv3_3 = TreeType<CustomNodeType>(
-    data: CustomNodeType.sampleLeafExpanded("3.3"),
+  var lv3_3 = TreeType<EasyNodeType>(
+    data: Ex.sampleLeafExpanded("3.3"),
     children: [],
     parent: null,
   );
 
-  var lv3_4 = TreeType<CustomNodeType>(
-    data: CustomNodeType.sampleLeafExpanded("3.4"),
+  var lv3_4 = TreeType<EasyNodeType>(
+    data: Ex.sampleLeafExpanded("3.4"),
     children: [],
     parent: null,
   );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/custom_outlined_btn.dart';
+import '../../widgets/btn1.dart';
 import 'ex_lazy_stack_screen.dart';
 import 'ex_stack_screen.dart';
 
@@ -15,19 +15,19 @@ class _StackScreenState extends State<StackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Stack Screen Example")),
+      appBar: AppBar(title: const Text("Stack variant")),
       body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomOutlinedButton(
+            Btn1(
               screen: ExStackScreen(),
-              title: "Stack Tree\nmultiple choice - parse data 1 time",
+              title: "Multiple choice.\nParse data 1 time",
             ),
             SizedBox(height: 20),
-            CustomOutlinedButton(
+            Btn1(
               screen: ExLazyStackScreen(),
-              title: "Lazy Stack Tree\nmultiple choice - parse data run-time",
+              title: "Lazy multiple choice.\nParse data run-time",
             ),
           ],
         ),

@@ -12,12 +12,15 @@
   
 </div>
 
-The `recursive_tree_flutter` library helps build a tree data structure and visualizes it as an inheritance tree (stack view or expandable tree view). While most tree-view libraries focus on the interface, `recursive_tree_flutter` prioritizes the tree data structure, allowing it to support various special UI styles - that's the strength of this library. For example, it can update the tree when a node is selected, return a list of chosen nodes/leaves, return a list of favorite nodes...
+Customize your tree UI with NO LIMITS! By mainly focusing on data structure, you can customize the tree UI with UNLIMITED styles.
+
+Unlike most tree-view libraries focus on the interface, `recursive_tree_flutter` prioritizes the tree data structure, allowing it to support various special UI styles - that's the strength of this library.
 
 ## Table of contents
 
 - [recursive\_tree\_flutter](#recursive_tree_flutter)
   - [Table of contents](#table-of-contents)
+  - [Images & videos](#images--videos)
   - [Code example](#code-example)
   - [Features](#features)
   - [Contents](#contents)
@@ -26,6 +29,9 @@ The `recursive_tree_flutter` library helps build a tree data structure and visua
     - [Flutter UI Tree](#flutter-ui-tree)
     - [Explaining the working of the Expandable Tree based on ExpandableTreeMixin](#explaining-the-working-of-the-expandable-tree-based-on-expandabletreemixin)
   - [BSD-3-Clause License](#bsd-3-clause-license)
+
+## Images & videos
+
 
 ## Code example
 Reference to [Explaining the working of the Expandable Tree based on ExpandableTreeMixin](#explaining-the-working-of-the-expandable-tree-based-on-expandabletreemixin).
@@ -45,7 +51,7 @@ class ExTreeSingleChoice extends StatefulWidget {
 }
 
 class _ExTreeSingleChoiceState extends State<ExTreeSingleChoice> {
-  late TreeType<CustomNodeType> _tree;
+  late TreeType<EasyNodeType> _tree;
   final TextEditingController _textController = TextEditingController();
 
   @override
@@ -107,7 +113,7 @@ class _VTSNodeWidget extends StatefulWidget {
     required this.onNodeDataChanged,
   });
 
-  final TreeType<CustomNodeType> tree;
+  final TreeType<EasyNodeType> tree;
 
   /// IMPORTANT: Because this library **DOESN'T** use any state management
   /// library, therefore I need to use call back function like this - although
@@ -119,7 +125,7 @@ class _VTSNodeWidget extends StatefulWidget {
 }
 
 class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
-    with SingleTickerProviderStateMixin, ExpandableTreeMixin<CustomNodeType> {
+    with SingleTickerProviderStateMixin, ExpandableTreeMixin<EasyNodeType> {
   final Tween<double> _turnsTween = Tween<double>(begin: -0.25, end: 0.0);
 
   @override
@@ -218,7 +224,7 @@ class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
 
   @override
   List<Widget> generateChildrenNodesWidget(
-          List<TreeType<CustomNodeType>> list) =>
+          List<TreeType<EasyNodeType>> list) =>
       List.generate(
         list.length,
         (int index) => _VTSNodeWidget(

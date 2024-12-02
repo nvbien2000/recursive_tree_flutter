@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../../models/custom_node_type.dart';
 import '../../data/example_lazy_stack_data.dart';
 
 /// data was parsed in run-time
@@ -13,7 +12,7 @@ class ExLazyStackScreen extends StatefulWidget {
 }
 
 class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
-  List<TreeType<CustomNodeType>> listTrees = [];
+  List<TreeType<EasyNodeType>> listTrees = [];
   final String searchingText = "3";
 
   @override
@@ -29,9 +28,12 @@ class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
       body: Column(
         children: [
           const SizedBox(height: 30),
-          const Text(
-            "Stack tree widget was built for fun :)",
-            style: TextStyle(color: Colors.red),
+          Container(
+            color: Colors.white,
+            child: const Text(
+              "Need help? Mail me: nvbien2000@gmail.com",
+              style: TextStyle(color: Colors.red),
+            ),
           ),
           const Divider(
             thickness: 2,
@@ -39,8 +41,12 @@ class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
           ),
           Expanded(
             child: LazyStackWidget(
-              properties: TreeViewProperties<CustomNodeType>(
-                title: "THIS IS TITLE",
+              properties: UIProperties(
+                title: "YOU REACH THE ROOTS",
+                titleStyle: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               listTrees: listTrees,
               getNewAddedTreeChildren: getNewAddedTreeChildren,
@@ -52,7 +58,7 @@ class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
           ),
           OutlinedButton(
             onPressed: () {
-              List<TreeType<CustomNodeType>> result = [];
+              List<TreeType<EasyNodeType>> result = [];
               var root = findRoot(listTrees[0]);
               returnChosenNodes(root, result);
               String resultTxt = "";
@@ -68,7 +74,7 @@ class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
           ),
           OutlinedButton(
             onPressed: () {
-              List<TreeType<CustomNodeType>> result = [];
+              List<TreeType<EasyNodeType>> result = [];
               var root = findRoot(listTrees[0]);
               searchAllTreesWithTitleDFS(root, searchingText, result);
               String resultTxt = "";
@@ -89,9 +95,9 @@ class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
     );
   }
 
-  List<TreeType<CustomNodeType>> getNewAddedTreeChildren(
-      TreeType<CustomNodeType> parent) {
-    List<TreeType<CustomNodeType>> newChildren;
+  List<TreeType<EasyNodeType>> getNewAddedTreeChildren(
+      TreeType<EasyNodeType> parent) {
+    List<TreeType<EasyNodeType>> newChildren;
     String parentTitle = parent.data.title;
 
     if (parentTitle.contains("0")) {

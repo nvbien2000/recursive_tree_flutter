@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../../models/custom_node_type.dart';
 import '../../data/example_vts_department_data_expanded.dart';
 
 class ExExpandableTreeExpandedScreen extends StatefulWidget {
@@ -14,7 +13,7 @@ class ExExpandableTreeExpandedScreen extends StatefulWidget {
 
 class _ExExpandableTreeExpandedScreenState
     extends State<ExExpandableTreeExpandedScreen> {
-  late TreeType<CustomNodeType> _tree;
+  late TreeType<EasyNodeType> _tree;
   final TextEditingController _textController = TextEditingController();
 
   @override

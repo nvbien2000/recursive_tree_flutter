@@ -1,0 +1,14 @@
+#!/bin/sh
+
+printf "==== Running pre-commit hook ====\n"
+
+format:
+ifeq ($(fvm), true)
+	fvm dart format .
+	fvm dart fix --apply .
+else
+	dart format .
+	dart fix --apply .
+endif
+
+printf "==== Pre-commit hook finished ====\n"

@@ -1,8 +1,12 @@
+import 'package:example/helpers/ex_traversal_func.dart';
+import 'package:example/widgets/btn3.dart';
 import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../../models/custom_node_type.dart';
+import '../../models/ex.dart';
 import '../../data/example_stack_data.dart';
+import '../../widgets/btn2.dart';
+import '../../widgets/divider.dart';
 
 /// data was parsed 1 time
 class ExStackScreen extends StatefulWidget {
@@ -13,76 +17,118 @@ class ExStackScreen extends StatefulWidget {
 }
 
 class _ExStackScreenState extends State<ExStackScreen> {
-  List<TreeType<CustomNodeType>> listTrees = [];
+  late List<TreeType<EasyNodeType>> listTrees;
   final String searchingText = "3";
 
   @override
   void initState() {
-    listTrees = sampleTree();
+    listTrees = sampleStackData();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Stack Tree (multiple choice)")),
-      body: Column(
-        children: [
-          const SizedBox(height: 30),
-          const Text(
-            "Stack tree widget was built for fun :)",
-            style: TextStyle(color: Colors.red),
-          ),
-          const Divider(
-            thickness: 2,
-            height: 60,
-          ),
-          Expanded(
-            child: StackWidget(
-              properties: TreeViewProperties<CustomNodeType>(
-                title: "THIS IS TITLE",
+      appBar: AppBar(title: const Text("StackWidget (multiple choice)")),
+      body: SafeArea(
+        child: Column(
+          children: [
+            divider,
+            Expanded(
+              child: StackWidget(
+                listTrees,
+                properties: const UIProperties(
+                  title: "YOU REACH THE ROOTS",
+                  titleStyle: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              listTrees: listTrees,
             ),
-          ),
-          const Divider(
-            thickness: 2,
-            height: 60,
-          ),
-          OutlinedButton(
-            onPressed: () {
-              List<TreeType<CustomNodeType>> result = [];
-              var root = findRoot(listTrees[0]);
-              returnChosenLeaves(root, result);
-              String resultTxt = "";
-              for (var e in result) {
-                resultTxt += "${e.data.title}\n";
-              }
-              if (resultTxt.isEmpty) resultTxt = "none";
+            divider,
+            GridView.count(
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              childAspectRatio: 4,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              shrinkWrap: true,
+              children: [
+                Btn2(
+                  title: "Chosen leaves",
+                  onTap: () => chosenLeaves(context, listTrees[0]),
+                ),
+                Btn2(
+                  title: "Chosen nodes",
+                  onTap: () => chosenNodes(context, listTrees[0]),
+                ),
+                Btn2(
+                  title: "Search leaves contain \"2\"",
+                  onTap: () => searchLeaves(context, "2", listTrees[0]),
+                ),
+                Btn2(
+                  title: "Search nodes contain \"2\"",
+                  onTap: () => searchNodes(context, "2", listTrees[0]),
+                ),
+              ],
+            ),
+            divider,
+            GridView.count(
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              childAspectRatio: 4,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              shrinkWrap: true,
+              children: [
+                Btn3(
+                  title: "Insert leaf to root",
+                  onTap: () {
+                    var root = findRoot(listTrees[0]);
+                    var newLeaf = Ex.sampleRandomLeaf();
 
-              var snackBar = SnackBar(content: Text(resultTxt));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            },
-            child: const Text("Which leaves were chosen?"),
-          ),
-          OutlinedButton(
-            onPressed: () {
-              List<TreeType<CustomNodeType>> result = [];
-              var root = listTrees[0].parent!;
-              searchAllTreesWithTitleDFS(root, searchingText, result);
-              String resultTxt = "";
-              for (var e in result) {
-                resultTxt += "${e.data.title}\n";
-              }
-              if (resultTxt.isEmpty) resultTxt = "none";
+                    try {
+                      insertNode(root, newLeaf);
+                      setState(() {});
+                    } catch (e) {
+                      debugPrint(e.toString());
+                    }
+                  },
+                ),
+                Btn3(
+                  title: "Insert inner node to 1.2",
+                  onTap: () {
+                    var node1_2 = listTrees[1];
+                    var newNode = Ex.sampleRandomInner();
 
-              var snackBar = SnackBar(content: Text(resultTxt));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
-            },
-            child: Text("Which nodes contain text='$searchingText'?"),
-          ),
-          const SizedBox(height: 30),
-        ],
+                    try {
+                      insertNode(node1_2, newNode);
+                      setState(() {});
+                    } catch (e) {
+                      debugPrint(e.toString());
+                    }
+                  },
+                ),
+                Btn3(
+                  title: "Delete branch 3.4",
+                  onTap: () {
+                    var tree = findRoot(listTrees[0]);
+                    var node3_4 = listTrees[0].children[1].children[0];
+                    var id = node3_4.data.id;
+
+                    try {
+                      deleteBranchByID(tree, id);
+                      setState(() {});
+                    } catch (e) {
+                      debugPrint(e.toString());
+                    }
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

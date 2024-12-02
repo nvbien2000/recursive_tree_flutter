@@ -9,7 +9,7 @@ class LazyStackWidget<T extends AbsNodeType> extends StatefulWidget {
     required this.getNewAddedTreeChildren,
   });
 
-  final TreeViewProperties<T> properties;
+  final UIProperties properties;
   final List<TreeType<T>> listTrees;
 
   /// If this function not null, data was parsed to tree only 1 time; else
@@ -132,7 +132,7 @@ class _LazyStackWidgetState<T extends AbsNodeType>
       onTap: () {},
       title: Text(
         leaf.data.title,
-        style: widget.properties.listTileTitleStyle,
+        style: widget.properties.nodeTextStyle,
       ),
       leading: widget.properties.leafLeadingWidget,
       trailing: Checkbox(
@@ -164,7 +164,7 @@ class _LazyStackWidgetState<T extends AbsNodeType>
       tileColor: null,
       title: Text(
         innerNode.data.title,
-        style: widget.properties.listTileTitleStyle,
+        style: widget.properties.nodeTextStyle,
       ),
       leading: widget.properties.innerNodeLeadingWidget,
       trailing: Checkbox(

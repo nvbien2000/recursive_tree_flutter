@@ -1,18 +1,21 @@
 name: recursive_tree_flutter
-description: A tree-view package which focuses on tree data structure and displays it into UI.
-version: 0.0.7
-repository: https://github.com/gpmndev/recursive_tree_flutter
+description: Customize your tree UI with NO LIMITS! By mainly focusing on data structure, you can customize the tree UI with UNLIMITED styles.
+version: 2.0.0
+publish_to: none # Remove this line if you wish to publish to pub.dev
+repository: https://github.com/nvbien2000/recursive_tree_flutter
 
 environment:
-  sdk: '>=2.18.2 <4.0.0'
+  sdk: ">=2.17.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  unit_tree_data_structure:
+    path: ../unit_tree_data_structure
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter:
+flutter: null

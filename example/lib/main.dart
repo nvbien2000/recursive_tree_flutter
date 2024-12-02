@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'screens/expandable_multiple_choice/expandable_multiple_choice_screen.dart';
 import 'screens/expandable_single_choice/expandable_single_choice_screen.dart';
 import 'screens/stack/stack_screen.dart';
-import 'screens/vts/vts_screen.dart';
-import 'widgets/custom_outlined_btn.dart';
+import 'widgets/btn1.dart';
+import 'widgets/divider.dart';
 
 void main() {
   runApp(const MainApp());
@@ -28,46 +28,28 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Tree View Flutter Example")),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomOutlinedButton(
+            const Btn1(
               screen: StackScreen(),
-              title: "Stack",
+              title: "Stack variants",
             ),
-            //_____________________
-            Divider(
-              thickness: 2,
-              height: 50,
-              color: Colors.black,
-            ),
-            //_____________________
-            CustomOutlinedButton(
+            divider,
+            const Btn1(
               screen: ExpandableMultipleChoiceScreen(),
-              title: "Expandable Multiple Choice",
+              title: "Expanded variants",
             ),
-            //_____________________
-            Divider(
-              thickness: 2,
-              height: 50,
-              color: Colors.black,
-            ),
-            //_____________________
-            CustomOutlinedButton(
+            divider,
+            const Btn1(
               screen: ExpandableSingleChoiceScreen(),
-              title: "Expandable Single Choice",
+              title: "Expanded - Single Choice variant",
             ),
-            //_____________________
-            Divider(
-              thickness: 2,
-              height: 50,
-              color: Colors.black,
-            ),
-            //_____________________
-            CustomOutlinedButton(
-              screen: VTSScreen(),
-              title: "VTS Department Tree",
+            divider,
+            InkWell(
+              // onTap: () {},
+              child: Container(),
             ),
           ],
         ),
