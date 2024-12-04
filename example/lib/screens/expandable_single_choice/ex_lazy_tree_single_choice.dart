@@ -58,44 +58,38 @@ class _VTSNodeWidget extends StatefulWidget {
 }
 
 class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
-    with SingleTickerProviderStateMixin, ExpandableTreeMixin<EasyNodeType> {
-  final Tween<double> _turnsTween = Tween<double>(begin: -0.25, end: 0.0);
+    with SingleTickerProviderStateMixin, ExpandedWidgetMixin<EasyNodeType> {
   bool _showLoading = false;
 
   @override
-  initState() {
-    super.initState();
-    initTree();
-    initRotationController();
+  void onInit() {
+    tree = widget.tree;
+    rotationController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
     if (tree.data.isExpanded) {
       rotationController.forward();
     }
   }
 
   @override
-  void initTree() {
-    tree = widget.tree;
-  }
-
-  @override
-  void initRotationController() {
-    rotationController = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
+  initState() {
+    super.initState();
+    onInit();
   }
 
   @override
   void dispose() {
-    super.disposeRotationController();
+    onDispose();
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) => buildView();
+  Widget build(BuildContext context) => buildView(context);
 
   @override
-  Widget buildNode() {
+  Widget buildNode(BuildContext context) {
     return InkWell(
       onTap: toggleExpansion,
       child: Row(
@@ -113,13 +107,13 @@ class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
 
   Widget _buildRotationIcon() {
     return RotationTransition(
-      turns: _turnsTween.animate(rotationController),
+      turns: turnsTween.animate(rotationController),
       child: tree.isLeaf
           ? Container()
           : IconButton(
               iconSize: 16,
               icon: const Icon(Icons.expand_more, size: 16.0),
-              onPressed: updateStateToggleExpansion,
+              onPressed: updateToggleExpansion,
             ),
     );
   }
@@ -168,7 +162,7 @@ class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
   //* __________________________________________________________________________
 
   @override
-  List<Widget> generateChildrenNodesWidget(List<TreeType<EasyNodeType>> list) =>
+  List<Widget> genChildrenWidgets(List<TreeType<EasyNodeType>> list) =>
       List.generate(
         list.length,
         (int index) => _VTSNodeWidget(
@@ -220,7 +214,7 @@ class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
   }
 
   @override
-  void updateStateToggleExpansion() {}
+  void updateToggleExpansion() {}
 }
 
 //! __________________________________________________________________________

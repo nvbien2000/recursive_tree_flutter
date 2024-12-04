@@ -1,4 +1,10 @@
-part of 'ui_properties.dart';
+/* 
+ * Author: Nguyen Van Bien
+ * Email: nvbien2000@gmail.com
+ * LinkedIn: linkedin.com/in/nvbien2000
+ */
+
+part of '../recursive_tree_flutter.dart';
 
 /// Default values/widgets for [UIProperties]
 class UIConst {
@@ -29,36 +35,3 @@ class UIConst {
     ],
   );
 }
-
-// class DefaultCheckBox extends StatelessWidget {
-//   const DefaultCheckBox({
-//     Key? key,
-//     required this.isChecked,
-//     required this.onChanged,
-//   }) : super(key: key);
-
-//   final bool isChecked;
-//   final ValueChanged<bool> onChanged;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Checkbox(
-//       tristate: true,
-//       side: innerNode.data.isUnavailable
-//           ? const BorderSide(color: Colors.grey, width: 1.0)
-//           : BorderSide(color: Theme.of(context).primaryColor, width: 1.0),
-//       value: innerNode.data.isUnavailable ? false : innerNode.data.isChosen,
-//       shape: const RoundedRectangleBorder(
-//         borderRadius: BorderRadius.all(Radius.circular(4)),
-//       ),
-//       activeColor: innerNode.data.isUnavailable
-//           ? Colors.grey
-//           : Theme.of(context).primaryColor,
-//       onChanged: innerNode.data.isUnavailable
-//           ? null
-//           : (value) {
-//               setState(() => updateTreeMultipleChoice(innerNode, value));
-//             },
-//     );
-//   }
-// }

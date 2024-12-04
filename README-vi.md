@@ -24,11 +24,11 @@ Thư viện `recursive_tree_flutter` giúp xây dựng một cấu trúc dữ li
     - [Cấu trúc dữ liệu cây (Dart code)](#cấu-trúc-dữ-liệu-cây-dart-code)
     - [Hàm phụ trợ (Dart code)](#hàm-phụ-trợ-dart-code)
     - [Cây giao diện Flutter](#cây-giao-diện-flutter)
-    - [Giải thích cách hoạt động của expandable tree bất kỳ dựa trên ExpandableTreeMixin](#giải-thích-cách-hoạt-động-của-expandable-tree-bất-kỳ-dựa-trên-expandabletreemixin)
+    - [Giải thích cách hoạt động của expandable tree bất kỳ dựa trên ExpandedWidgetMixin](#giải-thích-cách-hoạt-động-của-expandable-tree-bất-kỳ-dựa-trên-ExpandedWidgetMixin)
   - [BSD-3-Clause License](#bsd-3-clause-license)
 
 ## Ví dụ
-Tham khảo mục [Giải thích cách hoạt động của expandable tree bất kỳ dựa trên ExpandableTreeMixin](#giải-thích-cách-hoạt-động-của-expandable-tree-bất-kỳ-dựa-trên-expandabletreemixin).
+Tham khảo mục [Giải thích cách hoạt động của expandable tree bất kỳ dựa trên ExpandedWidgetMixin](#giải-thích-cách-hoạt-động-của-expandable-tree-bất-kỳ-dựa-trên-ExpandedWidgetMixin).
 
 ```dart
 import 'package:flutter/material.dart';
@@ -119,7 +119,7 @@ class _VTSNodeWidget extends StatefulWidget {
 }
 
 class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
-    with SingleTickerProviderStateMixin, ExpandableTreeMixin<EasyNodeType> {
+    with SingleTickerProviderStateMixin, ExpandedWidgetMixin<EasyNodeType> {
   final Tween<double> _turnsTween = Tween<double>(begin: -0.25, end: 0.0);
 
   @override
@@ -336,7 +336,7 @@ Tương tự cấu trúc cây thư mục trong máy tính, `recursive_tree_flutt
 
 <img src="https://github.com/gpmndev/recursive_tree_flutter/raw/main/readme_files/vts_dm4_tree.gif" alt="Demo 8" width="200"/>
 
-### Giải thích cách hoạt động của expandable tree bất kỳ dựa trên [ExpandableTreeMixin](lib/views/expandable_tree_mixin.dart)
+### Giải thích cách hoạt động của expandable tree bất kỳ dựa trên [ExpandedWidgetMixin](lib/views/expandable_tree_mixin.dart)
 
 Một cây giao diện expandable sẽ có cấu trúc như sau:
 ```dart
@@ -351,7 +351,7 @@ SingleChildScrollView( // tree is scrollable
     ...
 )
 ```
-Ta có thể thấy, `NodeWidget` là `StatefulWidget` được xây dựng theo kiểu đệ quy và được bọc ngoài bởi `SingleChildScrollView` cung cấp cho cây khả năng scroll. Việc cập nhập cây (data) sẽ dẫn tới thay đổi trạng thái/UI của `NodeWidget` - có thể sử dụng `setState` hoặc `Provider` để quản lý. `NodeWidget` sẽ kế thừa [ExpandableTreeMixin](lib/views/expandable_tree_mixin.dart) (xem ví dụ ở [VTSDepartmentTreeWidget](lib/views/vts/vts_department_tree_widget.dart) dùng `setState`) với một số hàm như:
+Ta có thể thấy, `NodeWidget` là `StatefulWidget` được xây dựng theo kiểu đệ quy và được bọc ngoài bởi `SingleChildScrollView` cung cấp cho cây khả năng scroll. Việc cập nhập cây (data) sẽ dẫn tới thay đổi trạng thái/UI của `NodeWidget` - có thể sử dụng `setState` hoặc `Provider` để quản lý. `NodeWidget` sẽ kế thừa [ExpandedWidgetMixin](lib/views/expandable_tree_mixin.dart) (xem ví dụ ở [VTSDepartmentTreeWidget](lib/views/vts/vts_department_tree_widget.dart) dùng `setState`) với một số hàm như:
   - `initTree()`: Khởi tạo cây (data) (gọi trong `initState()`).
   - `initRotationController()`: Khởi tạo biến `rotationController` dùng để tạo hiệu ứng khi mở rộng cây UI (gọi trong `initState()`).
   - `disposeRotationController()`.

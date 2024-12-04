@@ -4,16 +4,14 @@ import '../../widgets/btn1.dart';
 import 'ex_expandable_tree_expanded_screen.dart';
 import 'ex_expandable_tree_screen.dart';
 
-class ExpandableMultipleChoiceScreen extends StatefulWidget {
-  const ExpandableMultipleChoiceScreen({super.key});
+class ExpandedScreen extends StatefulWidget {
+  const ExpandedScreen({super.key});
 
   @override
-  State<ExpandableMultipleChoiceScreen> createState() =>
-      _ExpandableMultipleChoiceScreenState();
+  State<ExpandedScreen> createState() => _ExpandedScreenState();
 }
 
-class _ExpandableMultipleChoiceScreenState
-    extends State<ExpandableMultipleChoiceScreen> {
+class _ExpandedScreenState extends State<ExpandedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

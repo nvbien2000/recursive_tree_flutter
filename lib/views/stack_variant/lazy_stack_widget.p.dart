@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
+/* 
+ * Author: Nguyen Van Bien
+ * Email: nvbien2000@gmail.com
+ */
+
+part of '../../recursive_tree_flutter.dart';
 
 class LazyStackWidget<T extends AbsNodeType> extends StatefulWidget {
   const LazyStackWidget(
@@ -74,7 +78,7 @@ class _LazyStackWidgetState<T extends AbsNodeType>
         title,
         textAlign: TextAlign.center,
         style: widget.properties.titleStyle,
-        maxLines: widget.properties.titleMaxLines,
+        maxLines: widget.properties.stackTitleMaxLines,
       ),
     );
   }

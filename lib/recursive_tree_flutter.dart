@@ -5,14 +5,19 @@
 
 library recursive_tree_flutter;
 
+import 'package:flutter/material.dart';
+import 'package:unit_tree_data_structure/unit_tree_data_structure.dart';
+
 export 'package:unit_tree_data_structure/unit_tree_data_structure.dart';
 
-export 'utils/ui_properties.dart';
+part 'models/typedef.dart';
 
-export 'models/typedef.dart';
+part 'utils/ui_properties.p.dart';
+part 'utils/ui_property_constants.p.dart';
 
-export 'widgets/expanded_variant/expandable_tree_widget.dart';
-export 'widgets/expanded_variant/expandable_tree_mixin.dart';
+part 'views/expanded_variant/widgets/expanded_internal_widget.p.dart';
+part 'views/expanded_variant/expanded_widget_mixin.p.dart';
+part 'views/expanded_variant/expanded_widget.p.dart';
 
-export 'widgets/stack_variant/lazy_stack_widget.dart';
-export 'widgets/stack_variant/stack_widget.dart';
+part 'views/stack_variant/lazy_stack_widget.p.dart';
+part 'views/stack_variant/stack_widget.p.dart';

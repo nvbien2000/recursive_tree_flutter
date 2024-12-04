@@ -1,10 +1,10 @@
 ## 1.0.0
 ### **BREAKING CHANGE**
 * Separate tree data structure into another package: [unit_tree_data_structure](https://pub.dev/packages/unit_tree_data_structure).
-* Add multiple ways to customize your UI.
+* Add `fromJson` to easily convert `Map<String, dynamic>` to `TreeType`.
 * Add clearer examples.
-* Apply `ChangeNotifier` to manage the widget's state, making the source code easier to read compared to using the `setState` callback.
 * Replace `SingleChildScrollView`/`Column` with `ListView.builder()` to improve performance.
+* Refactor source code.
 
 ## 0.0.7
 * Apply multiple-lines property for [ExpandableTreeWidget](lib/views/expandable_tree_widget.dart)
@@ -41,7 +41,7 @@
 
 ## 0.0.3
 
-* Create ExpandableTreeMixin to give developer more powerful to customize tree view UI.
+* Create ExpandedWidgetMixin to give developer more powerful to customize tree view UI.
 * Add function update for single choice tree.
 * Create example for single choice expandable tree view.
 

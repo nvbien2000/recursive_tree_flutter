@@ -38,7 +38,7 @@ class _ExExpandableTreeExpandedScreenState
           children: [
             Expanded(
               flex: 4,
-              child: ExpandableTreeWidget(_tree),
+              child: ExpandedWidget(_tree),
             ),
             Expanded(
               flex: 1,

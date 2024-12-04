@@ -1,5 +1,5 @@
 name: recursive_tree_flutter
-description: Customize your tree UI with NO LIMITS! By mainly focusing on data structure, you can customize the tree UI with UNLIMITED styles.
+description: Customize your tree UI with NO LIMITS! By mainly focusing on data structure, you can customize the tree UI with various styles.
 version: 2.0.0
 publish_to: none # Remove this line if you wish to publish to pub.dev
 repository: https://github.com/nvbien2000/recursive_tree_flutter

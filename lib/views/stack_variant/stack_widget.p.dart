@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
+/* 
+ * Author: Nguyen Van Bien
+ * Email: nvbien2000@gmail.com
+ */
+
+part of '../../recursive_tree_flutter.dart';
 
 /// You can start with a list of children trees rather than
 /// the root. If you want to start with root, you can pass the argument:
@@ -71,7 +75,7 @@ class _StackWidgetState<T extends AbsNodeType> extends State<StackWidget<T>> {
         title,
         textAlign: TextAlign.center,
         style: widget.properties.titleStyle,
-        maxLines: widget.properties.titleMaxLines,
+        maxLines: widget.properties.stackTitleMaxLines,
       ),
     );
   }

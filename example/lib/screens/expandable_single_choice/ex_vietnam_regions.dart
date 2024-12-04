@@ -54,43 +54,36 @@ class _NodeWidget extends StatefulWidget {
 }
 
 class _NodeWidgetState<T extends AbsNodeType> extends State<_NodeWidget>
-    with SingleTickerProviderStateMixin, ExpandableTreeMixin<VNRegionNode> {
-  final Tween<double> _turnsTween = Tween<double>(begin: -0.25, end: 0.0);
-
+    with SingleTickerProviderStateMixin, ExpandedWidgetMixin<VNRegionNode> {
   @override
-  initState() {
-    super.initState();
-    initTree();
-    initRotationController();
+  void onInit() {
+    tree = widget.tree;
+    rotationController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
     if (tree.data.isExpanded) {
       rotationController.forward();
     }
   }
 
   @override
-  void initTree() {
-    tree = widget.tree;
-  }
-
-  @override
-  void initRotationController() {
-    rotationController = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
+  initState() {
+    super.initState();
+    onInit();
   }
 
   @override
   void dispose() {
-    super.disposeRotationController();
+    onDispose();
     super.dispose();
   }
 
   @override
-  Widget build(BuildContext context) => buildView();
+  Widget build(BuildContext context) => buildView(context);
 
   @override
-  Widget buildNode() {
+  Widget buildNode(BuildContext context) {
     if (!widget.tree.data.isShowedInSearching) return const SizedBox.shrink();
 
     Color colorByLevel;
@@ -109,7 +102,7 @@ class _NodeWidgetState<T extends AbsNodeType> extends State<_NodeWidget>
     }
 
     return InkWell(
-      onTap: updateStateToggleExpansion,
+      onTap: updateToggleExpansion,
       child: Container(
         color: colorByLevel,
         child: Row(
@@ -127,13 +120,13 @@ class _NodeWidgetState<T extends AbsNodeType> extends State<_NodeWidget>
 
   Widget buildRotationIcon() {
     return RotationTransition(
-      turns: _turnsTween.animate(rotationController),
+      turns: turnsTween.animate(rotationController),
       child: tree.isLeaf
           ? Container()
           : IconButton(
               iconSize: 16,
               icon: const Icon(Icons.expand_more, size: 16.0),
-              onPressed: updateStateToggleExpansion,
+              onPressed: updateToggleExpansion,
             ),
     );
   }
@@ -170,7 +163,7 @@ class _NodeWidgetState<T extends AbsNodeType> extends State<_NodeWidget>
   //* __________________________________________________________________________
 
   @override
-  List<Widget> generateChildrenNodesWidget(List<TreeType<VNRegionNode>> list) =>
+  List<Widget> genChildrenWidgets(List<TreeType<VNRegionNode>> list) =>
       List.generate(
         list.length,
         (int index) => _NodeWidget(
@@ -180,5 +173,5 @@ class _NodeWidgetState<T extends AbsNodeType> extends State<_NodeWidget>
       );
 
   @override
-  void updateStateToggleExpansion() => setState(() => toggleExpansion());
+  void updateToggleExpansion() => setState(() => toggleExpansion());
 }

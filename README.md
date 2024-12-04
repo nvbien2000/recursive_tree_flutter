@@ -12,7 +12,7 @@
   
 </div>
 
-Customize your tree UI with NO LIMITS! By mainly focusing on data structure, you can customize the tree UI with UNLIMITED styles.
+Customize your tree UI with no limit! By mainly focusing on data structure, you can customize the tree UI with various styles.
 
 Unlike most tree-view libraries focus on the interface, `recursive_tree_flutter` prioritizes the tree data structure, allowing it to support various special UI styles - that's the strength of this library.
 
@@ -27,14 +27,14 @@ Unlike most tree-view libraries focus on the interface, `recursive_tree_flutter`
     - [Tree Data Structure (Dart code)](#tree-data-structure-dart-code)
     - [Helper Functions (Dart code)](#helper-functions-dart-code)
     - [Flutter UI Tree](#flutter-ui-tree)
-    - [Explaining the working of the Expandable Tree based on ExpandableTreeMixin](#explaining-the-working-of-the-expandable-tree-based-on-expandabletreemixin)
+    - [Explaining the working of the Expandable Tree based on ExpandedWidgetMixin](#explaining-the-working-of-the-expandable-tree-based-on-ExpandedWidgetMixin)
   - [BSD-3-Clause License](#bsd-3-clause-license)
 
 ## Images & videos
 
 
 ## Code example
-Reference to [Explaining the working of the Expandable Tree based on ExpandableTreeMixin](#explaining-the-working-of-the-expandable-tree-based-on-expandabletreemixin).
+Reference to [Explaining the working of the Expandable Tree based on ExpandedWidgetMixin](#explaining-the-working-of-the-expandable-tree-based-on-ExpandedWidgetMixin).
 
 ```dart
 import 'package:flutter/material.dart';
@@ -125,7 +125,7 @@ class _VTSNodeWidget extends StatefulWidget {
 }
 
 class _VTSNodeWidgetState<T extends AbsNodeType> extends State<_VTSNodeWidget>
-    with SingleTickerProviderStateMixin, ExpandableTreeMixin<EasyNodeType> {
+    with SingleTickerProviderStateMixin, ExpandedWidgetMixin<EasyNodeType> {
   final Tween<double> _turnsTween = Tween<double>(begin: -0.25, end: 0.0);
 
   @override
@@ -341,7 +341,7 @@ Similarly to the directory tree structure on a computer, `recursive_tree_flutter
 
 <img src="https://github.com/gpmndev/recursive_tree_flutter/raw/main/readme_files/vts_dm4_tree.gif" alt="Demo 8" width="200"/>
 
-### Explaining the working of the Expandable Tree based on [ExpandableTreeMixin](lib/views/expandable_tree_mixin.dart)
+### Explaining the working of the Expandable Tree based on [ExpandedWidgetMixin](lib/views/expandable_tree_mixin.dart)
 
 An expandable UI tree has the following structure:
 
@@ -357,7 +357,7 @@ SingleChildScrollView( // tree is scrollable
     ...
 )
 ```
-We can see that `NodeWidget` is a `StatefulWidget` built recursively and wrapped by `SingleChildScrollView` to provide scrolling capability to the tree. Updating the tree (data) will change the state/UI of the `NodeWidget` - this can be done using setState or Provider for management. `NodeWidget` will inherit [ExpandableTreeMixin](lib/views/expandable_tree_mixin.dart) (as shown in the example [VTSDepartmentTreeWidget](lib/views/vts/vts_department_tree_widget.dart) using `setState`) with some functions like:
+We can see that `NodeWidget` is a `StatefulWidget` built recursively and wrapped by `SingleChildScrollView` to provide scrolling capability to the tree. Updating the tree (data) will change the state/UI of the `NodeWidget` - this can be done using setState or Provider for management. `NodeWidget` will inherit [ExpandedWidgetMixin](lib/views/expandable_tree_mixin.dart) (as shown in the example [VTSDepartmentTreeWidget](lib/views/vts/vts_department_tree_widget.dart) using `setState`) with some functions like:
 
   - `initTree()`: Initializes the tree (data) (called in `initState()`).
   - `initRotationController()`: Initializes the `rotationController` variable used to create an animation effect when expanding the UI tree (called in `initState()`).
