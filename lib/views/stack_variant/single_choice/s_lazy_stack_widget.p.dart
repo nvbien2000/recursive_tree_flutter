@@ -3,10 +3,10 @@
  * Email: nvbien2000@gmail.com
  */
 
-part of '../../recursive_tree_flutter.dart';
+part of '../../../recursive_tree_flutter.dart';
 
-class LazyStackWidget<T extends AbsNodeType> extends StatefulWidget {
-  const LazyStackWidget(
+class SLazyStackWidget<T extends AbsNodeType> extends StatefulWidget {
+  const SLazyStackWidget(
     this.initData, {
     super.key,
     this.properties = const UIProperties(),
@@ -21,11 +21,11 @@ class LazyStackWidget<T extends AbsNodeType> extends StatefulWidget {
   final FGetChildrenFunc<T> fGetChildrenFunc;
 
   @override
-  State<LazyStackWidget> createState() => _LazyStackWidgetState<T>();
+  State<SLazyStackWidget> createState() => _SLazyStackWidgetState<T>();
 }
 
-class _LazyStackWidgetState<T extends AbsNodeType>
-    extends State<LazyStackWidget<T>> {
+class _SLazyStackWidgetState<T extends AbsNodeType>
+    extends State<SLazyStackWidget<T>> {
   late List<TreeType<T>> listTrees;
 
   @override
@@ -106,17 +106,10 @@ class _LazyStackWidgetState<T extends AbsNodeType>
     }
 
     final leading = widget.properties.leafLeadingWidget;
-    final checkBoxTristate = tree.isLeaf ? false : true;
-
-    return ListTile(
-      onTap: listTileOnTap,
-      title: Text(
-        title,
-        style: widget.properties.nodeTextStyle,
-      ),
-      leading: leading,
-      trailing: Checkbox(
-        tristate: checkBoxTristate,
+    Widget? trailing;
+    if (tree.isLeaf) {
+      // leaf trailing is a checkbox
+      trailing = Checkbox(
         side: tree.data.isUnavailable
             ? const BorderSide(color: Colors.grey, width: 1.0)
             : BorderSide(color: Theme.of(context).primaryColor, width: 1.0),
@@ -130,13 +123,30 @@ class _LazyStackWidgetState<T extends AbsNodeType>
         onChanged: tree.data.isUnavailable
             ? null
             : (value) {
-                setState(() => updateTreeMultipleChoice(
+                setState(() => updateTreeSingleChoice(
                       tree,
-                      value,
-                      isThisLazyTree: true,
+                      value!,
                     ));
               },
+      );
+    } else {
+      // inner node trailing is null or an arrow, based on its state
+      if (tree.data.isChosen == null) {
+        trailing = Icon(
+          Icons.arrow_forward_ios_rounded,
+          color: Colors.green,
+        );
+      }
+    }
+
+    return ListTile(
+      onTap: listTileOnTap,
+      title: Text(
+        title,
+        style: widget.properties.nodeTextStyle,
       ),
+      leading: leading,
+      trailing: trailing,
     );
   }
 

@@ -52,7 +52,6 @@ class Ex {
       title: "[Inner] Random inner node created at: $createdAt",
       subtitle: "Random inner node subtitle $createdAt",
       isUnavailable: true,
-      isChosen: null,
     );
   }
 

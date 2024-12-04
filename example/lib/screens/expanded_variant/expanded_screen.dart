@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/btn1.dart';
-import 'ex_expandable_tree_expanded_screen.dart';
-import 'ex_expandable_tree_screen.dart';
+import 'ex_expanded_screen.dart';
+import 'ex_expanded_tree_screen.dart';
 
 class ExpandedScreen extends StatefulWidget {
   const ExpandedScreen({super.key});

@@ -3,13 +3,13 @@
  * Email: nvbien2000@gmail.com
  */
 
-part of '../../recursive_tree_flutter.dart';
+part of '../../../recursive_tree_flutter.dart';
 
 /// You can start with a list of children trees rather than
 /// the root. If you want to start with root, you can pass the argument:
 /// `listTrees = [root]`
-class StackWidget<T extends AbsNodeType> extends StatefulWidget {
-  const StackWidget(
+class SStackWidget<T extends AbsNodeType> extends StatefulWidget {
+  const SStackWidget(
     this.initData, {
     super.key,
     this.properties = const UIProperties(),
@@ -19,10 +19,10 @@ class StackWidget<T extends AbsNodeType> extends StatefulWidget {
   final UIProperties properties;
 
   @override
-  State<StackWidget> createState() => _StackWidgetState<T>();
+  State<SStackWidget> createState() => _SStackWidgetState<T>();
 }
 
-class _StackWidgetState<T extends AbsNodeType> extends State<StackWidget<T>> {
+class _SStackWidgetState<T extends AbsNodeType> extends State<SStackWidget<T>> {
   late List<TreeType<T>> listTrees;
 
   @override
@@ -94,18 +94,13 @@ class _StackWidgetState<T extends AbsNodeType> extends State<StackWidget<T>> {
     final listTileOnTap = tree.isLeaf ? null : () => _pressGoToChild(tree);
     final title =
         tree.data.title + (tree.isLeaf ? "" : " (${tree.children.length})");
-    final leading = widget.properties.leafLeadingWidget;
-    final checkBoxTristate = tree.isLeaf ? false : true;
 
-    return ListTile(
-      onTap: listTileOnTap,
-      title: Text(
-        title,
-        style: widget.properties.nodeTextStyle,
-      ),
-      leading: leading,
-      trailing: Checkbox(
-        tristate: checkBoxTristate,
+    final leading = widget.properties.leafLeadingWidget;
+    Widget? trailing;
+    if (tree.isLeaf) {
+      // leaf trailing is a checkbox
+      trailing = Checkbox(
+        tristate: false,
         side: tree.data.isUnavailable
             ? const BorderSide(color: Colors.grey, width: 1.0)
             : BorderSide(color: Theme.of(context).primaryColor, width: 1.0),
@@ -119,9 +114,27 @@ class _StackWidgetState<T extends AbsNodeType> extends State<StackWidget<T>> {
         onChanged: tree.data.isUnavailable
             ? null
             : (value) {
-                setState(() => updateTreeMultipleChoice(tree, value));
+                setState(() => updateTreeSingleChoice(tree, value!));
               },
+      );
+    } else {
+      // inner node trailing is null or an arrow, based on its state
+      if (tree.data.isChosen == null) {
+        trailing = Icon(
+          Icons.arrow_forward_ios_rounded,
+          color: Colors.green,
+        );
+      }
+    }
+
+    return ListTile(
+      onTap: listTileOnTap,
+      title: Text(
+        title,
+        style: widget.properties.nodeTextStyle,
       ),
+      leading: leading,
+      trailing: trailing,
     );
   }
 

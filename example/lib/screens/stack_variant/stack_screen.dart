@@ -1,8 +1,10 @@
+import 'package:example/screens/stack_variant/multiple_choice/m_lazy_stack_screen.dart';
+import 'package:example/screens/stack_variant/multiple_choice/m_stack_screen.dart';
+import 'package:example/screens/stack_variant/single_choice/s_lazy_stack_screen.dart';
+import 'package:example/screens/stack_variant/single_choice/s_stack_screen.dart';
+import 'package:example/widgets/btn1.dart';
+import 'package:example/widgets/divider.dart';
 import 'package:flutter/material.dart';
-
-import '../../widgets/btn1.dart';
-import 'ex_lazy_stack_screen.dart';
-import 'ex_stack_screen.dart';
 
 class StackScreen extends StatefulWidget {
   const StackScreen({super.key});
@@ -16,18 +18,49 @@ class _StackScreenState extends State<StackScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Stack variant")),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Btn1(
-              screen: ExStackScreen(),
-              title: "Multiple choice.\nParse data 1 time",
+            const Text(
+              "Multiple choice style",
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+              ),
             ),
-            SizedBox(height: 20),
-            Btn1(
-              screen: ExLazyStackScreen(),
-              title: "Lazy multiple choice.\nParse data run-time",
+            const SizedBox(height: 20),
+            const Btn1(
+              screen: MStackScreen(),
+              title: "Normal\nData parsed 1 time",
+            ),
+            const SizedBox(height: 20),
+            const Btn1(
+              screen: MLazyStackScreen(),
+              title: "Lazy\nData parsed run-time",
+            ),
+            const SizedBox(height: 20),
+            divider,
+            //? ************************************************************
+            const SizedBox(height: 20),
+            const Text(
+              "Single choice style",
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Btn1(
+              screen: SStackScreen(),
+              title: "Normal\nData parsed 1 time",
+            ),
+            const SizedBox(height: 20),
+            const Btn1(
+              screen: SLazyStackScreen(),
+              title: "Lazy\nData parsed run-time",
             ),
           ],
         ),

@@ -3,25 +3,25 @@ import 'package:example/widgets/btn3.dart';
 import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../../models/ex.dart';
-import '../../data/stack_variant/example_stack_data.dart';
-import '../../widgets/btn2.dart';
-import '../../widgets/divider.dart';
+import '../../../models/ex.dart';
+import '../../../data/stack_variant/stack_data.dart';
+import '../../../widgets/btn2.dart';
+import '../../../widgets/divider.dart';
 
-class ExStackScreen extends StatefulWidget {
-  const ExStackScreen({super.key});
+class MStackScreen extends StatefulWidget {
+  const MStackScreen({super.key});
 
   @override
-  State<ExStackScreen> createState() => _ExStackScreenState();
+  State<MStackScreen> createState() => _MStackScreenState();
 }
 
-class _ExStackScreenState extends State<ExStackScreen> {
+class _MStackScreenState extends State<MStackScreen> {
   late List<TreeType<EasyNodeType>> listTrees;
-  final String searchingText = "3";
 
   @override
   void initState() {
     listTrees = sampleStackData();
+
     super.initState();
   }
 
@@ -34,7 +34,7 @@ class _ExStackScreenState extends State<ExStackScreen> {
           children: [
             divider,
             Expanded(
-              child: StackWidget(
+              child: MStackWidget(
                 listTrees,
                 properties: const UIProperties(
                   title: "YOU REACH THE ROOTS",

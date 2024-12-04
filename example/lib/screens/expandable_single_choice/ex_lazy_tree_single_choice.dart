@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../../data/stack_variant/example_lazy_stack_data.dart';
+import '../../data/stack_variant/lazy_stack_data.dart';
 
 class ExLazyTreeSingleChoice extends StatefulWidget {
   const ExLazyTreeSingleChoice({super.key});
@@ -225,19 +225,15 @@ List<TreeType<EasyNodeType>> getNewAddedTreeChildren(
   String parentTitle = parent.data.title;
 
   if (parentTitle.contains("0")) {
-    newChildren = createChildrenOfRoot();
+    newChildren = createChildrenOfRoot(parent);
   } else if (parentTitle.contains("1.1")) {
-    newChildren = createChildrenOfLv1_1();
+    newChildren = createChildrenOfLv1_1(parent);
   } else if (parentTitle.contains("2.1")) {
-    newChildren = createChildrenOfLv2_1();
+    newChildren = createChildrenOfLv2_1(parent);
   } else if (parentTitle.contains("2.2")) {
-    newChildren = createChildrenOfLv2_2();
+    newChildren = createChildrenOfLv2_2(parent);
   } else {
     newChildren = [];
-  }
-
-  for (var newChild in newChildren) {
-    newChild.parent = parent;
   }
 
   return newChildren;

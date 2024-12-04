@@ -84,6 +84,7 @@ List<TreeType<EasyNodeType>> sampleStackData<T extends AbsNodeType>() {
     implFromJson: EasyNodeType.fromJson,
   );
 
+  // it is VERY important to call this function
   updateAllUnavailableNodes(tree);
 
   return tree.children;

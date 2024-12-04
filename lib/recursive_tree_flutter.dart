@@ -19,5 +19,7 @@ part 'views/expanded_variant/widgets/expanded_internal_widget.p.dart';
 part 'views/expanded_variant/expanded_widget_mixin.p.dart';
 part 'views/expanded_variant/expanded_widget.p.dart';
 
-part 'views/stack_variant/lazy_stack_widget.p.dart';
-part 'views/stack_variant/stack_widget.p.dart';
+part 'views/stack_variant/multiple_choice/m_lazy_stack_widget.p.dart';
+part 'views/stack_variant/multiple_choice/m_stack_widget.p.dart';
+part 'views/stack_variant/single_choice/s_lazy_stack_widget.p.dart';
+part 'views/stack_variant/single_choice/s_stack_widget.p.dart';

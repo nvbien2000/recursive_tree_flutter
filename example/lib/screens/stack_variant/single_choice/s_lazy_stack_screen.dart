@@ -4,18 +4,17 @@ import 'package:example/widgets/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../../data/stack_variant/example_lazy_stack_data.dart';
+import '../../../data/stack_variant/lazy_stack_data.dart';
 
-class ExLazyStackScreen extends StatefulWidget {
-  const ExLazyStackScreen({super.key});
+class SLazyStackScreen extends StatefulWidget {
+  const SLazyStackScreen({super.key});
 
   @override
-  State<ExLazyStackScreen> createState() => _ExLazyStackScreenState();
+  State<SLazyStackScreen> createState() => _SLazyStackScreenState();
 }
 
-class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
+class _SLazyStackScreenState extends State<SLazyStackScreen> {
   List<TreeType<EasyNodeType>> listTrees = [];
-  final String searchingText = "3";
   bool isLoading = false;
 
   @override
@@ -35,7 +34,7 @@ class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
               children: [
                 divider,
                 Expanded(
-                  child: LazyStackWidget(
+                  child: SLazyStackWidget(
                     listTrees,
                     properties: const UIProperties(
                       title: "YOU REACH THE ROOTS",
@@ -93,19 +92,15 @@ class _ExLazyStackScreenState extends State<ExLazyStackScreen> {
     setState(() => isLoading = false);
 
     if (parentTitle.contains("0")) {
-      newChildren = createChildrenOfRoot();
+      newChildren = createChildrenOfRoot(parent);
     } else if (parentTitle.contains("1.1")) {
-      newChildren = createChildrenOfLv1_1();
+      newChildren = createChildrenOfLv1_1(parent);
     } else if (parentTitle.contains("2.1")) {
-      newChildren = createChildrenOfLv2_1();
+      newChildren = createChildrenOfLv2_1(parent);
     } else if (parentTitle.contains("2.2")) {
-      newChildren = createChildrenOfLv2_2();
+      newChildren = createChildrenOfLv2_2(parent);
     } else {
       newChildren = [];
-    }
-
-    for (var newChild in newChildren) {
-      newChild.parent = parent;
     }
 
     return newChildren;
