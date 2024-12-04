@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
 import '../../models/ex.dart';
-import '../../data/example_stack_data.dart';
+import '../../data/stack_variant/example_stack_data.dart';
 import '../../widgets/btn2.dart';
 import '../../widgets/divider.dart';
 
@@ -110,14 +110,12 @@ class _ExStackScreenState extends State<ExStackScreen> {
                   },
                 ),
                 Btn3(
-                  title: "Delete branch 3.4",
+                  title: "Delete tree with id=34",
                   onTap: () {
-                    var tree = findRoot(listTrees[0]);
-                    var node3_4 = listTrees[0].children[1].children[0];
-                    var id = node3_4.data.id;
+                    var root = findRoot(listTrees[0]);
 
                     try {
-                      deleteBranchByID(tree, id);
+                      deleteBranchByID(root, 34);
                       setState(() {});
                     } catch (e) {
                       debugPrint(e.toString());

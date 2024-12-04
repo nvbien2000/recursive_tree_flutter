@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'screens/expandable_multiple_choice/expanded_screen.dart';
 import 'screens/expandable_single_choice/expandable_single_choice_screen.dart';
-import 'screens/stack/stack_screen.dart';
+import 'screens/stack_variant/stack_screen.dart';
 import 'widgets/btn1.dart';
 import 'widgets/divider.dart';
 

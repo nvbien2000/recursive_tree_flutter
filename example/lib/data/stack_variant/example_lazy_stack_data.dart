@@ -1,6 +1,6 @@
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../models/ex.dart';
+import '../../models/ex.dart';
 
 TreeType<EasyNodeType> createRoot() => TreeType<EasyNodeType>(
       data: Ex.sampleInner("0"),

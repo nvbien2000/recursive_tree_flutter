@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-import '../../data/example_lazy_stack_data.dart';
+import '../../data/stack_variant/example_lazy_stack_data.dart';
 
 class ExLazyTreeSingleChoice extends StatefulWidget {
   const ExLazyTreeSingleChoice({super.key});
