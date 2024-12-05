@@ -1,5 +1,7 @@
 import 'package:example/screens/expanded_variant/multiple_choice/m_expanded_screen.dart';
 import 'package:example/screens/expanded_variant/multiple_choice/m_lazy_expanded_screen.dart';
+import 'package:example/screens/expanded_variant/single_choice/s_expanded_screen.dart';
+import 'package:example/screens/expanded_variant/single_choice/s_lazy_expanded_screen.dart';
 import 'package:example/widgets/btn1.dart';
 import 'package:example/widgets/divider.dart';
 import 'package:flutter/material.dart';
@@ -55,12 +57,12 @@ class _ExpandedVariantsScreenState extends State<ExpandedVariantsScreen> {
                   ),
                   const SizedBox(height: 20),
                   const Btn1(
-                    screen: MExpandedScreen(),
+                    screen: SExpandedScreen(),
                     title: "Normal\nData parsed 1 time",
                   ),
                   const SizedBox(height: 20),
                   const Btn1(
-                    screen: MExpandedScreen(),
+                    screen: SLazyExpandedScreen(),
                     title: "Lazy\nData parsed run-time",
                   ),
                 ],

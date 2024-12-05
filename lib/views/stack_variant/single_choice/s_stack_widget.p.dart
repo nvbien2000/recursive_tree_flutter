@@ -96,11 +96,11 @@ class _SStackWidgetState<T extends AbsNodeType> extends State<SStackWidget<T>> {
         tree.data.title + (tree.isLeaf ? "" : " (${tree.children.length})");
 
     final leading = widget.properties.leafLeadingWidget;
+
     Widget? trailing;
     if (tree.isLeaf) {
       // leaf trailing is a checkbox
       trailing = Checkbox(
-        tristate: false,
         side: tree.data.isUnavailable
             ? const BorderSide(color: Colors.grey, width: 1.0)
             : BorderSide(color: Theme.of(context).primaryColor, width: 1.0),

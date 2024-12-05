@@ -106,6 +106,7 @@ class _SLazyStackWidgetState<T extends AbsNodeType>
     }
 
     final leading = widget.properties.leafLeadingWidget;
+
     Widget? trailing;
     if (tree.isLeaf) {
       // leaf trailing is a checkbox

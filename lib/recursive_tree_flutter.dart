@@ -22,6 +22,11 @@ part 'views/expanded_variant/multiple_choice/widgets/m_lazy_expanded_internal_wi
 part 'views/expanded_variant/multiple_choice/m_lazy_expanded_widget.p.dart';
 part 'views/expanded_variant/multiple_choice/m_expanded_widget.p.dart';
 
+part 'views/expanded_variant/single_choice/widgets/s_expanded_internal_widget.p.dart';
+part 'views/expanded_variant/single_choice/widgets/s_lazy_expanded_internal_widget.p.dart';
+part 'views/expanded_variant/single_choice/s_lazy_expanded_widget.p.dart';
+part 'views/expanded_variant/single_choice/s_expanded_widget.p.dart';
+
 part 'views/stack_variant/multiple_choice/m_lazy_stack_widget.p.dart';
 part 'views/stack_variant/multiple_choice/m_stack_widget.p.dart';
 part 'views/stack_variant/single_choice/s_lazy_stack_widget.p.dart';
