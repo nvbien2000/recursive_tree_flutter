@@ -27,7 +27,7 @@ class _SStackScreenState extends State<SStackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("StackWidget (multiple choice)")),
+      appBar: AppBar(title: const Text("StackWidget (single choice)")),
       body: SafeArea(
         child: Column(
           children: [

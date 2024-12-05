@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'screens/expanded_variant/expanded_screen.dart';
+import 'screens/expanded_variant/expanded_variants_screen.dart';
 import 'screens/expandable_single_choice/expandable_single_choice_screen.dart';
-import 'screens/stack_variant/stack_screen.dart';
+import 'screens/stack_variant/stack_variants_screen.dart';
 import 'widgets/btn1.dart';
 import 'widgets/divider.dart';
 
@@ -33,12 +33,12 @@ class MyApp extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Btn1(
-              screen: StackScreen(),
+              screen: StackVariantsScreen(),
               title: "Stack variants",
             ),
             divider,
             const Btn1(
-              screen: ExpandedScreen(),
+              screen: ExpandedVariantsScreen(),
               title: "Expanded variants",
             ),
             divider,

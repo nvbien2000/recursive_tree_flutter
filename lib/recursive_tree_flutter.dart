@@ -15,9 +15,12 @@ part 'models/typedef.dart';
 part 'utils/ui_properties.p.dart';
 part 'utils/ui_property_constants.p.dart';
 
-part 'views/expanded_variant/widgets/expanded_internal_widget.p.dart';
 part 'views/expanded_variant/expanded_widget_mixin.p.dart';
-part 'views/expanded_variant/expanded_widget.p.dart';
+
+part 'views/expanded_variant/multiple_choice/widgets/m_expanded_internal_widget.p.dart';
+part 'views/expanded_variant/multiple_choice/widgets/m_lazy_expanded_internal_widget.p.dart';
+part 'views/expanded_variant/multiple_choice/m_lazy_expanded_widget.p.dart';
+part 'views/expanded_variant/multiple_choice/m_expanded_widget.p.dart';
 
 part 'views/stack_variant/multiple_choice/m_lazy_stack_widget.p.dart';
 part 'views/stack_variant/multiple_choice/m_stack_widget.p.dart';

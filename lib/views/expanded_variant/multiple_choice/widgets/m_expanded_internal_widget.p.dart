@@ -3,15 +3,15 @@
  * Email: nvbien2000@gmail.com
  */
 
-part of '../../../recursive_tree_flutter.dart';
+part of '../../../../recursive_tree_flutter.dart';
 
-/// expanded internal widget
-class _EIWidget<T extends AbsNodeType> extends StatefulWidget {
-  const _EIWidget(
+/// Multiple choice style: Internal widget of [MExpandedWidget].
+class _MEIWidget<T extends AbsNodeType> extends StatefulWidget {
+  const _MEIWidget(
     this.initData, {
     super.key,
     required this.setStateEntireWidget,
-    required this.properties,
+    this.properties = const UIProperties(),
   });
 
   final TreeType<T> initData;
@@ -22,10 +22,10 @@ class _EIWidget<T extends AbsNodeType> extends StatefulWidget {
   final VoidCallback setStateEntireWidget;
 
   @override
-  State<_EIWidget> createState() => _EIWidgetState<T>();
+  State<_MEIWidget> createState() => _MEIWidgetState<T>();
 }
 
-class _EIWidgetState<T extends AbsNodeType> extends State<_EIWidget<T>>
+class _MEIWidgetState<T extends AbsNodeType> extends State<_MEIWidget<T>>
     with SingleTickerProviderStateMixin, ExpandedWidgetMixin<T> {
   @override
   void onInit() {
@@ -41,7 +41,7 @@ class _EIWidgetState<T extends AbsNodeType> extends State<_EIWidget<T>>
   }
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     onInit();
   }
@@ -116,7 +116,7 @@ class _EIWidgetState<T extends AbsNodeType> extends State<_EIWidget<T>>
   List<Widget> genChildrenWidgets(children) {
     return List.generate(
       children.length,
-      (i) => _EIWidget(
+      (i) => _MEIWidget(
         children[i],
         setStateEntireWidget: widget.setStateEntireWidget,
         properties: widget.properties,

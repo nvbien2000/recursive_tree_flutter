@@ -26,7 +26,7 @@ class _SLazyStackScreenState extends State<SLazyStackScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("LazyStackWidget (multiple choice)")),
+      appBar: AppBar(title: const Text("LazyStackWidget (single choice)")),
       body: Stack(
         children: [
           SafeArea(

@@ -15,9 +15,6 @@ class MLazyStackWidget<T extends AbsNodeType> extends StatefulWidget {
 
   final List<TreeType<T>> initData;
   final UIProperties properties;
-
-  /// If this function not null, data was parsed to tree only 1 time; else
-  /// data was parsed in run-time (lazy-loading).
   final FGetChildrenFunc<T> fGetChildrenFunc;
 
   @override

@@ -8,7 +8,7 @@ part of '../../recursive_tree_flutter.dart';
 mixin ExpandedWidgetMixin<T extends AbsNodeType> {
   late AnimationController rotationController;
   final Tween<double> turnsTween = Tween<double>(begin: -0.25, end: 0.0);
-  late UIProperties properties;
+  UIProperties properties = const UIProperties();
 
   late TreeType<T> tree;
 

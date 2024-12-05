@@ -1,8 +1,9 @@
 ## 1.0.0
 ### **BREAKING CHANGE**
 * Separate tree data structure into another package: [unit_tree_data_structure](https://pub.dev/packages/unit_tree_data_structure).
-* Add `fromJson` to easily convert `Map<String, dynamic>` to `TreeType`.
-* Add clearer examples.
+* Add `fromJson()` to easily convert from `Map<String, dynamic>` to `TreeType`.
+* Add more & restructure widgets: Stack variants X Expanded variants X Multiple-choice style X Single-choice style
+* Add more examples.
 * Replace `SingleChildScrollView`/`Column` with `ListView.builder()` to improve performance.
 * Refactor source code.
 
