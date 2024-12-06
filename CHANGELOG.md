@@ -1,4 +1,4 @@
-## 1.0.0
+## 2.0.0
 ### **BREAKING CHANGE**
 * Separate tree data structure into another package: [unit_tree_data_structure](https://pub.dev/packages/unit_tree_data_structure).
 * Add `fromJson()` to easily convert from `Map<String, dynamic>` to `TreeType`.
