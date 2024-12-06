@@ -14,7 +14,7 @@ class MLazyExpandedWidget<T extends AbsNodeType> extends StatefulWidget {
   });
 
   final TreeType<T> initData;
-  final UIProperties properties;
+  final UIProperties<T> properties;
   final FGetChildrenFunc<T> fGetChildrenFunc;
 
   @override

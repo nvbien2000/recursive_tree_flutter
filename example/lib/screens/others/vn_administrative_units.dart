@@ -32,53 +32,29 @@ class _OtherScreenState extends State<OtherScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text("Deeply customized UI")),
       body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  const Text(
-                    "- Vietnam has 63 provinces, 705 districts & 10,598 wards."
-                    "\n- Total: 11,366 administrative units."
-                    "\n- Because of this huge number, the tree data structure may take"
-                    " a lot of memory, and the traversal/update functions may take a lot of time.",
-                    style: TextStyle(fontSize: 15, height: 2),
-                  ),
-                  const SizedBox(height: 100),
-                  FutureBuilder(
-                    future: Future.delayed(const Duration(milliseconds: 500)),
-                    builder: (_, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else {
-                        return Btn1(
-                          screen: VnExpandedScreen(initData),
-                          title: "LET'S GO!",
-                        );
-                      }
-                    },
-                  ),
-                ],
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 300, width: double.infinity),
+              FutureBuilder(
+                future: Future.delayed(const Duration(milliseconds: 500)),
+                builder: (_, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else {
+                    return Btn1(
+                      screen: VnExpandedScreen(initData),
+                      title: "LET'S GO!",
+                    );
+                  }
+                },
               ),
-            ),
-            _buildLoading(),
-          ],
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  Widget _buildLoading() {
-    if (isLoading) {
-      return Container(
-        color: Colors.black.withOpacity(0.3),
-        child: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    } else {
-      return const SizedBox.shrink();
-    }
   }
 }

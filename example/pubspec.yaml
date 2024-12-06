@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   recursive_tree_flutter:
     path: ../
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:
@@ -23,4 +24,4 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/
+    - assets/img/

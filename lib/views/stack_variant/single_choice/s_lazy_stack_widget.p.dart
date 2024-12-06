@@ -133,9 +133,13 @@ class _SLazyStackWidgetState<T extends AbsNodeType>
     } else {
       // inner node trailing is null or an arrow, based on its state
       if (tree.data.isChosen == null) {
-        trailing = Icon(
-          Icons.arrow_forward_ios_rounded,
-          color: Colors.green,
+        trailing = Padding(
+          padding: const EdgeInsets.only(right: 12),
+          child: Icon(
+            Icons.arrow_forward_ios_rounded,
+            color: Theme.of(context).primaryColor,
+            size: 16,
+          ),
         );
       }
     }

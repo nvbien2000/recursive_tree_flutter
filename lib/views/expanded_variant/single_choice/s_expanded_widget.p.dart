@@ -13,7 +13,7 @@ class SExpandedWidget<T extends AbsNodeType> extends StatefulWidget {
   });
 
   final TreeType<T> initData;
-  final UIProperties properties;
+  final UIProperties<T> properties;
 
   @override
   State<SExpandedWidget<T>> createState() => _SExpandedWidgetState<T>();

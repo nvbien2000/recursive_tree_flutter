@@ -69,21 +69,25 @@ class _MLazyEIWidgetState<T extends AbsNodeType>
       }
     }
 
+    Widget? leading = widget.properties.leadingWidget(tree);
+    if (leading == null) {
+      leading = RotationTransition(
+        turns: turnsTween.animate(rotationController),
+        child: tree.isLeaf
+            ? SizedBox.shrink()
+            : IconButton(
+                iconSize: 16,
+                icon: const Icon(Icons.expand_more, size: 16.0),
+                onPressed: updateToggleExpansion,
+              ),
+      );
+    }
+
     return InkWell(
       onTap: toggleExpansion,
       child: Row(
         children: [
-          //? Rotation icon
-          RotationTransition(
-            turns: turnsTween.animate(rotationController),
-            child: tree.isLeaf
-                ? SizedBox.shrink()
-                : IconButton(
-                    iconSize: 16,
-                    icon: const Icon(Icons.expand_more, size: 16.0),
-                    onPressed: updateToggleExpansion,
-                  ),
-          ),
+          leading,
           //? Title
           Expanded(
             child: Padding(

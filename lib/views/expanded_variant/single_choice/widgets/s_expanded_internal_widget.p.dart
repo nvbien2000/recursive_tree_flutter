@@ -15,7 +15,7 @@ class _SEIWidget<T extends AbsNodeType> extends StatefulWidget {
   });
 
   final TreeType<T> initData;
-  final UIProperties properties;
+  final UIProperties<T> properties;
 
   /// This is a [setState] callback function. It is used to update the entire
   /// widget. Example: You need to update field [isChosen] of all nodes.
@@ -81,28 +81,36 @@ class _SEIWidgetState<T extends AbsNodeType> extends State<_SEIWidget<T>>
     } else {
       // inner node trailing is null or an arrow, based on its state
       if (tree.data.isChosen == null) {
-        trailing = Icon(
-          Icons.arrow_forward_ios_rounded,
-          color: Colors.green,
+        trailing = Padding(
+          padding: const EdgeInsets.only(right: 12),
+          child: Icon(
+            Icons.arrow_forward_ios_rounded,
+            color: Theme.of(context).primaryColor,
+            size: 16,
+          ),
         );
       }
+    }
+
+    Widget? leading = widget.properties.leadingWidget(tree);
+    if (leading == null) {
+      leading = RotationTransition(
+        turns: turnsTween.animate(rotationController),
+        child: tree.isLeaf
+            ? SizedBox.shrink()
+            : IconButton(
+                iconSize: 16,
+                icon: const Icon(Icons.expand_more, size: 16.0),
+                onPressed: updateToggleExpansion,
+              ),
+      );
     }
 
     return InkWell(
       onTap: updateToggleExpansion,
       child: Row(
         children: [
-          //? Rotation icon
-          RotationTransition(
-            turns: turnsTween.animate(rotationController),
-            child: tree.isLeaf
-                ? SizedBox.shrink()
-                : IconButton(
-                    iconSize: 16,
-                    icon: const Icon(Icons.expand_more, size: 16.0),
-                    onPressed: updateToggleExpansion,
-                  ),
-          ),
+          leading,
           //? Title
           Expanded(
             child: Padding(

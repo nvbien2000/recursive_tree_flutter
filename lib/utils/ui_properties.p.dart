@@ -19,7 +19,7 @@ class UIProperties<T extends AbsNodeType> {
     this.stackEmptyWidget = UIConst.emptyWidget,
     //
     this.leadingWidget = UIConst.nullFuncW,
-    this.trailingWidget = UIConst.nullFuncW,
+    // this.trailingWidget = UIConst.nullFuncW,
     //
     this.expandedPhysics = const NeverScrollableScrollPhysics(),
   });
@@ -34,7 +34,7 @@ class UIProperties<T extends AbsNodeType> {
   final Widget stackEmptyWidget;
 
   final Widget? Function(TreeType<T>) leadingWidget;
-  final Widget? Function(TreeType<T>) trailingWidget;
+  // final Widget? Function(TreeType<T>) trailingWidget;
 
   /// The scroll physics for Expanded variants. Default is
   /// [NeverScrollableScrollPhysics]. This physics is used inside

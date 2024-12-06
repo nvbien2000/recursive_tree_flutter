@@ -5,20 +5,19 @@
 
 Customize your tree UI with no limit! By mainly focusing on **data structure**, you can customize the tree UI with various styles.
 
-## add 2 best examples here GIF
+<img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/VNUnit.png" width="300"/>
 
 ## Table of contents
 
 - [recursive\_tree\_flutter](#recursive_tree_flutter)
   - [Table of contents](#table-of-contents)
   - [Demonstration](#demonstration)
+    - [1. Stack widgets](#1-stack-widgets)
+    - [2. Expanded widgets](#2-expanded-widgets)
   - [Quick Start](#quick-start)
     - [1. Introduce tree data structure](#1-introduce-tree-data-structure)
     - [2. With eager loading style](#2-with-eager-loading-style)
     - [3. With lazy loading style](#3-with-lazy-loading-style)
-  - [Code example](#code-example)
-  - [Contents](#contents)
-    - [Flutter UI Tree](#flutter-ui-tree)
   - [Ask: I want to customize the UI?](#ask-i-want-to-customize-the-ui)
   - [Ask: I want to customize the UI even MOREEEE!!](#ask-i-want-to-customize-the-ui-even-moreeee)
 
@@ -201,20 +200,6 @@ return SLazyStackWidget(
   fGetChildrenFunc: fGetChildrenFunc,
 );
 ```
-
-## Code example
-
-Result: 
-
-<img src="https://github.com/gpmndev/recursive_tree_flutter/raw/main/readme_files/ex_tree_single_choice.gif" alt="Demo 5" width="200"/>
-
-## Contents
-
-### Flutter UI Tree
-
-[VTSDepartmentTreeWidget](lib/views/vts/vts_department_tree_widget.dart): Another UI tree built using the expandable approach, and data is parsed only once:
-
-<img src="https://github.com/gpmndev/recursive_tree_flutter/raw/main/readme_files/vts_department_tree_widget.gif" alt="Demo 4" width="200"/>
 
 ## Ask: I want to customize the UI?
 

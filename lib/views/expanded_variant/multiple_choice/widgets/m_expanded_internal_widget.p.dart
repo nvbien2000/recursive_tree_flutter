@@ -57,21 +57,25 @@ class _MEIWidgetState<T extends AbsNodeType> extends State<_MEIWidget<T>>
 
   @override
   Widget buildNode(BuildContext context) {
+    Widget? leading = widget.properties.leadingWidget(tree);
+    if (leading == null) {
+      leading = RotationTransition(
+        turns: turnsTween.animate(rotationController),
+        child: tree.isLeaf
+            ? SizedBox.shrink()
+            : IconButton(
+                iconSize: 16,
+                icon: const Icon(Icons.expand_more, size: 16.0),
+                onPressed: updateToggleExpansion,
+              ),
+      );
+    }
+
     return InkWell(
       onTap: updateToggleExpansion,
       child: Row(
         children: [
-          //? Rotation icon
-          RotationTransition(
-            turns: turnsTween.animate(rotationController),
-            child: tree.isLeaf
-                ? SizedBox.shrink()
-                : IconButton(
-                    iconSize: 16,
-                    icon: const Icon(Icons.expand_more, size: 16.0),
-                    onPressed: updateToggleExpansion,
-                  ),
-          ),
+          leading,
           //? Title
           Expanded(
             child: Padding(
