@@ -5,7 +5,7 @@
 
 Customize your tree UI with no limit! By mainly focusing on **data structure**, you can customize the tree UI with various styles.
 
-<img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/VNUnit.png" width="300"/>
+<img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/VNUnit2.png" width="300"/>
 
 ## Table of contents
 
