@@ -90,7 +90,8 @@ class _MLazyEIWidgetState<T extends AbsNodeType>
               padding: const EdgeInsets.symmetric(horizontal: 6.0),
               child: Text(
                 title,
-                maxLines: widget.properties.maxLines,
+                style: widget.properties.nodeTextStyle(tree),
+                maxLines: widget.properties.nodeMaxLines,
                 overflow: TextOverflow.ellipsis,
               ),
             ),

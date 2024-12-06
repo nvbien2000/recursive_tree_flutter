@@ -34,7 +34,7 @@ class _MStackWidgetState<T extends AbsNodeType> extends State<MStackWidget<T>> {
   @override
   Widget build(BuildContext context) {
     if (listTrees.isEmpty) {
-      return widget.properties.emptyWidget;
+      return widget.properties.stackEmptyWidget;
     } else {
       return Column(
         children: [
@@ -56,7 +56,7 @@ class _MStackWidgetState<T extends AbsNodeType> extends State<MStackWidget<T>> {
 
     if (listTrees[0].isRoot) {
       leading = const SizedBox();
-      title = widget.properties.title;
+      title = widget.properties.stackTitle;
     } else {
       leading = IconButton(
         icon: const Icon(Icons.arrow_back_ios_new_rounded),
@@ -74,7 +74,7 @@ class _MStackWidgetState<T extends AbsNodeType> extends State<MStackWidget<T>> {
       title: Text(
         title,
         textAlign: TextAlign.center,
-        style: widget.properties.titleStyle,
+        style: widget.properties.stackTitleStyle,
         maxLines: widget.properties.stackTitleMaxLines,
       ),
     );
@@ -94,14 +94,15 @@ class _MStackWidgetState<T extends AbsNodeType> extends State<MStackWidget<T>> {
     final listTileOnTap = tree.isLeaf ? null : () => _pressGoToChild(tree);
     final title =
         tree.data.title + (tree.isLeaf ? "" : " (${tree.children.length})");
-    final leading = widget.properties.leafLeadingWidget;
+    final leading = widget.properties.leadingWidget(tree);
     final checkBoxTristate = tree.isLeaf ? false : true;
 
     return ListTile(
       onTap: listTileOnTap,
       title: Text(
         title,
-        style: widget.properties.nodeTextStyle,
+        style: widget.properties.nodeTextStyle(tree),
+        maxLines: widget.properties.nodeMaxLines,
       ),
       leading: leading,
       trailing: Checkbox(

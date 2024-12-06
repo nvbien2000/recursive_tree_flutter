@@ -1,6 +1,6 @@
 import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
 
-TreeType<EasyNodeType> sampleExpandedData<T extends AbsNodeType>() {
+TreeType<EasyNodeType> sampleExpandedData() {
   Map<String, dynamic> data = {
     "data": {
       "id": 0,

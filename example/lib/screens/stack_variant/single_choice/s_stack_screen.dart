@@ -36,8 +36,8 @@ class _SStackScreenState extends State<SStackScreen> {
               child: SStackWidget(
                 listTrees,
                 properties: const UIProperties(
-                  title: "YOU REACH THE ROOTS",
-                  titleStyle: TextStyle(
+                  stackTitle: "YOU REACH THE ROOTS",
+                  stackTitleStyle: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),

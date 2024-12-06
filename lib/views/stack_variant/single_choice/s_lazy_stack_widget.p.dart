@@ -37,7 +37,7 @@ class _SLazyStackWidgetState<T extends AbsNodeType>
   @override
   Widget build(BuildContext context) {
     if (listTrees.isEmpty) {
-      return widget.properties.emptyWidget;
+      return widget.properties.stackEmptyWidget;
     } else {
       return Column(
         children: [
@@ -59,7 +59,7 @@ class _SLazyStackWidgetState<T extends AbsNodeType>
 
     if (listTrees[0].isRoot) {
       leading = const SizedBox();
-      title = widget.properties.title;
+      title = widget.properties.stackTitle;
     } else {
       leading = IconButton(
         icon: const Icon(Icons.arrow_back_ios_new_rounded),
@@ -77,7 +77,7 @@ class _SLazyStackWidgetState<T extends AbsNodeType>
       title: Text(
         title,
         textAlign: TextAlign.center,
-        style: widget.properties.titleStyle,
+        style: widget.properties.stackTitleStyle,
         maxLines: widget.properties.stackTitleMaxLines,
       ),
     );
@@ -105,7 +105,7 @@ class _SLazyStackWidgetState<T extends AbsNodeType>
       }
     }
 
-    final leading = widget.properties.leafLeadingWidget;
+    final leading = widget.properties.leadingWidget(tree);
 
     Widget? trailing;
     if (tree.isLeaf) {
@@ -144,7 +144,7 @@ class _SLazyStackWidgetState<T extends AbsNodeType>
       onTap: listTileOnTap,
       title: Text(
         title,
-        style: widget.properties.nodeTextStyle,
+        style: widget.properties.nodeTextStyle(tree),
       ),
       leading: leading,
       trailing: trailing,

@@ -61,7 +61,7 @@ mixin ExpandedWidgetMixin<T extends AbsNodeType> {
       child: Padding(
         padding: const EdgeInsets.only(left: 24),
         child: ListView.builder(
-          physics: properties.ePhysics,
+          physics: properties.expandedPhysics,
           shrinkWrap: true,
           itemCount: widgets.length,
           itemBuilder: (_, i) => widgets[i],

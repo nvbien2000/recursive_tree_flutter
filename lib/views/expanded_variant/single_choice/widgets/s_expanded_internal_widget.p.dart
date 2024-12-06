@@ -110,7 +110,8 @@ class _SEIWidgetState<T extends AbsNodeType> extends State<_SEIWidget<T>>
               child: Text(
                 tree.data.title +
                     (tree.isLeaf ? "" : " (${tree.children.length})"),
-                maxLines: widget.properties.maxLines,
+                style: widget.properties.nodeTextStyle(tree),
+                maxLines: widget.properties.nodeMaxLines,
                 overflow: TextOverflow.ellipsis,
               ),
             ),

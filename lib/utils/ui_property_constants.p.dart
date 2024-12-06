@@ -7,7 +7,7 @@
 part of '../recursive_tree_flutter.dart';
 
 /// Default values/widgets for [UIProperties]
-class UIConst {
+class UIConst<T extends AbsNodeType> {
   static const title = "";
 
   static const titleStyle = TextStyle(
@@ -15,23 +15,17 @@ class UIConst {
     fontWeight: FontWeight.bold,
   );
 
-  static const emptyWidget = const Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(Icons.list_outlined, color: Colors.orange),
-      SizedBox(height: 10),
-      Text("Empty list"),
-    ],
+  static const emptyWidget = Center(
+    child: const Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(Icons.list_outlined, color: Colors.orange),
+        SizedBox(height: 10),
+        Text("Empty list"),
+      ],
+    ),
   );
 
-  static const loadingWidget = const CircularProgressIndicator();
-
-  static const errorWidget = const Column(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      const Icon(Icons.warning, color: Colors.red),
-      const SizedBox(height: 10),
-      Text("Error"),
-    ],
-  );
+  static Widget? nullFuncW<T>(TreeType tree) => null;
+  static TextStyle? nullFuncT<T>(TreeType tree) => null;
 }

@@ -37,8 +37,8 @@ class _MLazyStackScreenState extends State<MLazyStackScreen> {
                   child: MLazyStackWidget(
                     listTrees,
                     properties: const UIProperties(
-                      title: "YOU REACH THE ROOTS",
-                      titleStyle: TextStyle(
+                      stackTitle: "YOU REACH THE ROOTS",
+                      stackTitleStyle: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),

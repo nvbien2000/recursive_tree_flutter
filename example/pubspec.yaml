@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
   recursive_tree_flutter:
     path: ../
-  dvhcvn: ^2.0.20250101
 
 dev_dependencies:
   flutter_test:

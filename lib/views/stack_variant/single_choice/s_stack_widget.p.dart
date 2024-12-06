@@ -34,7 +34,7 @@ class _SStackWidgetState<T extends AbsNodeType> extends State<SStackWidget<T>> {
   @override
   Widget build(BuildContext context) {
     if (listTrees.isEmpty) {
-      return widget.properties.emptyWidget;
+      return widget.properties.stackEmptyWidget;
     } else {
       return Column(
         children: [
@@ -56,7 +56,7 @@ class _SStackWidgetState<T extends AbsNodeType> extends State<SStackWidget<T>> {
 
     if (listTrees[0].isRoot) {
       leading = const SizedBox();
-      title = widget.properties.title;
+      title = widget.properties.stackTitle;
     } else {
       leading = IconButton(
         icon: const Icon(Icons.arrow_back_ios_new_rounded),
@@ -74,7 +74,7 @@ class _SStackWidgetState<T extends AbsNodeType> extends State<SStackWidget<T>> {
       title: Text(
         title,
         textAlign: TextAlign.center,
-        style: widget.properties.titleStyle,
+        style: widget.properties.stackTitleStyle,
         maxLines: widget.properties.stackTitleMaxLines,
       ),
     );
@@ -95,7 +95,7 @@ class _SStackWidgetState<T extends AbsNodeType> extends State<SStackWidget<T>> {
     final title =
         tree.data.title + (tree.isLeaf ? "" : " (${tree.children.length})");
 
-    final leading = widget.properties.leafLeadingWidget;
+    final leading = widget.properties.leadingWidget(tree);
 
     Widget? trailing;
     if (tree.isLeaf) {
@@ -131,7 +131,8 @@ class _SStackWidgetState<T extends AbsNodeType> extends State<SStackWidget<T>> {
       onTap: listTileOnTap,
       title: Text(
         title,
-        style: widget.properties.nodeTextStyle,
+        style: widget.properties.nodeTextStyle(tree),
+        maxLines: widget.properties.nodeMaxLines,
       ),
       leading: leading,
       trailing: trailing,

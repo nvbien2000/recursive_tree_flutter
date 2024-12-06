@@ -79,7 +79,8 @@ class _MEIWidgetState<T extends AbsNodeType> extends State<_MEIWidget<T>>
               child: Text(
                 tree.data.title +
                     (tree.isLeaf ? "" : " (${tree.children.length})"),
-                maxLines: widget.properties.maxLines,
+                style: widget.properties.nodeTextStyle(tree),
+                maxLines: widget.properties.nodeMaxLines,
                 overflow: TextOverflow.ellipsis,
               ),
             ),

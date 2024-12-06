@@ -7,40 +7,39 @@
 part of '../recursive_tree_flutter.dart';
 
 /// Various ways to customize your UI!
-class UIProperties {
+class UIProperties<T extends AbsNodeType> {
   const UIProperties({
-    this.title = UIConst.title,
-    this.titleStyle,
-    this.nodeTextStyle,
+    this.stackTitle = UIConst.title,
+    this.stackTitleStyle,
     this.stackTitleMaxLines,
-    this.maxLines,
     //
-    this.emptyWidget = UIConst.emptyWidget,
-    this.loadingWidget = UIConst.loadingWidget,
-    this.errorWidget = UIConst.errorWidget,
+    this.nodeTextStyle = UIConst.nullFuncT,
+    this.nodeMaxLines,
     //
-    this.leafLeadingWidget,
-
+    this.stackEmptyWidget = UIConst.emptyWidget,
     //
-    this.ePhysics = const NeverScrollableScrollPhysics(),
+    this.leadingWidget = UIConst.nullFuncW,
+    this.trailingWidget = UIConst.nullFuncW,
+    //
+    this.expandedPhysics = const NeverScrollableScrollPhysics(),
   });
 
-  final String title;
-  final TextStyle? titleStyle;
-  final TextStyle? nodeTextStyle;
+  final String stackTitle;
+  final TextStyle? stackTitleStyle;
   final int? stackTitleMaxLines;
-  final int? maxLines;
 
-  final Widget emptyWidget;
-  final Widget loadingWidget;
-  final Widget errorWidget;
+  final TextStyle? Function(TreeType<T>) nodeTextStyle;
+  final int? nodeMaxLines;
 
-  final Widget? leafLeadingWidget;
+  final Widget stackEmptyWidget;
+
+  final Widget? Function(TreeType<T>) leadingWidget;
+  final Widget? Function(TreeType<T>) trailingWidget;
 
   /// The scroll physics for Expanded variants. Default is
   /// [NeverScrollableScrollPhysics]. This physics is used inside
   /// `ListView.builder` children nodes.
   ///
   /// To see the effect, change it to null or [BouncingScrollPhysics].
-  final ScrollPhysics? ePhysics;
+  final ScrollPhysics? expandedPhysics;
 }
