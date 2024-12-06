@@ -31,7 +31,7 @@ By default, you can apply **8** basic variants from this package: `Stack/Expande
 - 1.3. `SStackWidget`: Single choice, eager loading.
 - 1.4. `SLazyStackWidget`: Single choice, lazy loading.
 
-![MStackWidget](https://raw.githubusercontent.com/nvbien2000/recursive_tree_flutter/main/readme_files/MStackWidget.gif =250x)  ![MLazyStackWidget](https://raw.githubusercontent.com/nvbien2000/recursive_tree_flutter/main/readme_files/MStackWidget.gif =250x)
+<img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/MStackWidget.gif" width="250"/> <img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/MStackWidget.gif" width="250"/> 
 
 ### 2. Expanded widgets
 - 2.1. `MExpandedWidget`: Multiple choice, eager loading.
