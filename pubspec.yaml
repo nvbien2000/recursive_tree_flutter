@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  unit_tree_data_structure:
+  unit_tree_data_structure: ^1.0.0
 
 dev_dependencies:
   flutter_test:
