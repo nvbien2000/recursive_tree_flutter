@@ -114,7 +114,11 @@ class _MLazyEIWidgetState<T extends AbsNodeType>
                 : (value) {
                     tree.data.isChosen = value;
                     setState(() {
-                      updateTreeMultipleChoice(tree, value);
+                      updateTreeMultipleChoice(
+                        tree,
+                        value,
+                        isThisLazyTree: true,
+                      );
                       widget.setStateEntireWidget();
                     });
                   },
@@ -147,6 +151,8 @@ class _MLazyEIWidgetState<T extends AbsNodeType>
     if (!tree.isChildrenLoadedLazily) {
       var newChildren = await widget.fGetChildrenFunc(tree);
 
+      tree.isChildrenLoadedLazily = true;
+
       /// if inner node has no children, mark it as unavailable & not chosen,
       /// then update tree and -> `return`
       if (newChildren.isEmpty) {
@@ -174,8 +180,6 @@ class _MLazyEIWidgetState<T extends AbsNodeType>
         }
       }
       tree.children.addAll(newChildren);
-
-      tree.isChildrenLoadedLazily = true;
     }
 
     setState(() => super.toggleExpansion());
