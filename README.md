@@ -3,9 +3,16 @@
 
 # unit_tree_flutter
 
+## TRANSFER ANNOUNCEMENT !!
+Due to copyright, I won't use the name **recursive_tree_flutter** anymore, and this repo will change the status to read-only. The new name is **unit_tree_flutter**, and new repo is [https://github.com/nvbien2000/unit_tree_flutter](https://github.com/nvbien2000/unit_tree_flutter).
+
+------------
+
 Customize your tree UI with no limit! By mainly focusing on **data structure**, you can customize the tree UI with various styles.
 
 <img src="https://github.com/nvbien2000/unit_tree_flutter/raw/main/readme_files/VNUnit2.png" width="300"/>
+
+
 
 ## Table of contents
 
