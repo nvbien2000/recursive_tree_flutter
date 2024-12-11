@@ -179,13 +179,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.2"
-  recursive_tree_flutter:
-    dependency: "direct main"
-    description:
-      path: ".."
-      relative: true
-    source: path
-    version: "2.0.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -254,6 +247,13 @@ packages:
       sha256: "278ac9d33a03005f6de398e8c2ea032d397a0c9b65c64a2cb1e9eccfd535ada2"
       url: "https://pub.dev"
     source: hosted
+    version: "1.0.0"
+  unit_tree_flutter:
+    dependency: "direct main"
+    description:
+      path: ".."
+      relative: true
+    source: path
     version: "1.0.0"
   vector_graphics:
     dependency: transitive

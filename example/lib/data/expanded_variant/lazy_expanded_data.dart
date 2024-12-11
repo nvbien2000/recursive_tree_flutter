@@ -1,4 +1,4 @@
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
+import 'package:unit_tree_flutter/unit_tree_flutter.dart';
 
 TreeType<EasyNodeType> createRoot() {
   Map<String, dynamic> data = {

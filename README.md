@@ -1,15 +1,15 @@
 <!-- Author: Nguyen Van Bien -->
 <!-- Email: nvbien2000@gmail.com -->
 
-# recursive_tree_flutter
+# unit_tree_flutter
 
 Customize your tree UI with no limit! By mainly focusing on **data structure**, you can customize the tree UI with various styles.
 
-<img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/VNUnit2.png" width="300"/>
+<img src="https://github.com/nvbien2000/unit_tree_flutter/raw/main/readme_files/VNUnit2.png" width="300"/>
 
 ## Table of contents
 
-- [recursive\_tree\_flutter](#recursive_tree_flutter)
+- [recursive\_tree\_flutter](#unit_tree_flutter)
   - [Table of contents](#table-of-contents)
   - [Demonstration](#demonstration)
     - [1. Stack widgets](#1-stack-widgets)
@@ -30,9 +30,9 @@ By default, you can apply **8** basic variants from this package: `Stack/Expande
 - 1.3. `SStackWidget`: Single choice, eager loading.
 - 1.4. `SLazyStackWidget`: Single choice, lazy loading.
 
-<img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/MStackWidget.gif" width="250"/> <img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/MLazyStackWidget.gif" width="250"/> 
+<img src="https://github.com/nvbien2000/unit_tree_flutter/raw/main/readme_files/MStackWidget.gif" width="250"/> <img src="https://github.com/nvbien2000/unit_tree_flutter/raw/main/readme_files/MLazyStackWidget.gif" width="250"/> 
 
-<img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/SStackWidget.gif" width="250"/> <img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/SLazyStackWidget.gif" width="250"/> 
+<img src="https://github.com/nvbien2000/unit_tree_flutter/raw/main/readme_files/SStackWidget.gif" width="250"/> <img src="https://github.com/nvbien2000/unit_tree_flutter/raw/main/readme_files/SLazyStackWidget.gif" width="250"/> 
 
 ### 2. Expanded widgets
 - 2.1. `MExpandedWidget`: Multiple choice, eager loading.
@@ -40,9 +40,9 @@ By default, you can apply **8** basic variants from this package: `Stack/Expande
 - 2.3. `SExpandedWidget`: Single choice, eager loading.
 - 2.4. `SLazyExpandedWidget`: Single choice, lazy loading.
 
-<img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/MExpandedWidget.gif" width="250"/> <img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/MLazyExpandedWidget.gif" width="250"/> 
+<img src="https://github.com/nvbien2000/unit_tree_flutter/raw/main/readme_files/MExpandedWidget.gif" width="250"/> <img src="https://github.com/nvbien2000/unit_tree_flutter/raw/main/readme_files/MLazyExpandedWidget.gif" width="250"/> 
 
-<img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/SExpandedWidget.gif" width="250"/> <img src="https://github.com/nvbien2000/recursive_tree_flutter/raw/main/readme_files/SLazyExpandedWidget.gif" width="250"/> 
+<img src="https://github.com/nvbien2000/unit_tree_flutter/raw/main/readme_files/SExpandedWidget.gif" width="250"/> <img src="https://github.com/nvbien2000/unit_tree_flutter/raw/main/readme_files/SLazyExpandedWidget.gif" width="250"/> 
 
 ## Quick Start
 

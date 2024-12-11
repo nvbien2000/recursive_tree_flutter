@@ -4,7 +4,7 @@ import 'package:example/models/vn_region_node.dart';
 import 'package:example/screens/others/dash_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
+import 'package:unit_tree_flutter/unit_tree_flutter.dart';
 
 class VnExpandedScreen extends StatefulWidget {
   const VnExpandedScreen(this.tree, {super.key});

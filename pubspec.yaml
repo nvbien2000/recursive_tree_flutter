@@ -1,7 +1,7 @@
-name: recursive_tree_flutter
+name: unit_tree_flutter
 description: Customize your tree UI with NO LIMITS! By mainly focusing on data structure, you can customize the tree UI with various styles.
 version: 1.0.0
-repository: https://github.com/nvbien2000/recursive_tree_flutter
+repository: https://github.com/nvbien2000/unit_tree_flutter
 
 environment:
   sdk: ">=2.17.0 <4.0.0"

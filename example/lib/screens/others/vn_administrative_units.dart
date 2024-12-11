@@ -3,7 +3,7 @@ import 'package:example/models/vn_region_node.dart';
 import 'package:example/screens/others/vn_expanded_screen.dart';
 import 'package:example/widgets/btn1.dart';
 import 'package:flutter/material.dart';
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
+import 'package:unit_tree_flutter/unit_tree_flutter.dart';
 
 class OtherScreen extends StatefulWidget {
   const OtherScreen({super.key});

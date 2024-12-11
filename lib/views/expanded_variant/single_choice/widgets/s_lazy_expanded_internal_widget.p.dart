@@ -3,7 +3,7 @@
  * Email: nvbien2000@gmail.com
  */
 
-part of '../../../../recursive_tree_flutter.dart';
+part of '../../../../unit_tree_flutter.dart';
 
 /// Single choice style: Internal widget of [MLazyExpandedWidget].
 class _SLazyEIWidget<T extends AbsNodeType> extends StatefulWidget {

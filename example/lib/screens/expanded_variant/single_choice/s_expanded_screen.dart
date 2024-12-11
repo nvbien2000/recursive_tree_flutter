@@ -5,7 +5,7 @@ import 'package:example/widgets/btn2.dart';
 import 'package:example/widgets/btn3.dart';
 import 'package:example/widgets/divider.dart';
 import 'package:flutter/material.dart';
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
+import 'package:unit_tree_flutter/unit_tree_flutter.dart';
 
 class SExpandedScreen extends StatefulWidget {
   const SExpandedScreen({super.key});

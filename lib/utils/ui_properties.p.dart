@@ -4,7 +4,7 @@
  * LinkedIn: linkedin.com/in/nvbien2000
  */
 
-part of '../recursive_tree_flutter.dart';
+part of '../unit_tree_flutter.dart';
 
 /// Various ways to customize your UI!
 class UIProperties<T extends AbsNodeType> {

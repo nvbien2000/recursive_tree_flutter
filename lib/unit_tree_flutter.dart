@@ -3,7 +3,7 @@
  * Email: nvbien2000@gmail.com
  */
 
-library recursive_tree_flutter;
+library unit_tree_flutter;
 
 import 'package:flutter/material.dart';
 import 'package:unit_tree_data_structure/unit_tree_data_structure.dart';

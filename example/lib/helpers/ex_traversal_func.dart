@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
+import 'package:unit_tree_flutter/unit_tree_flutter.dart';
 
 void chosenLeaves(BuildContext context, TreeType tree) {
   List<TreeType<EasyNodeType>> result = [];

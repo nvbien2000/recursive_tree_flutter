@@ -1,6 +1,6 @@
 import 'package:example/data/expanded_variant/lazy_expanded_data.dart';
 import 'package:flutter/material.dart';
-import 'package:recursive_tree_flutter/recursive_tree_flutter.dart';
+import 'package:unit_tree_flutter/unit_tree_flutter.dart';
 
 class SLazyExpandedScreen extends StatefulWidget {
   const SLazyExpandedScreen({super.key});

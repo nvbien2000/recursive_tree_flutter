@@ -3,7 +3,7 @@
  * Email: nvbien2000@gmail.com
  */
 
-part of '../../../recursive_tree_flutter.dart';
+part of '../../../unit_tree_flutter.dart';
 
 /// You can start with a list of children trees rather than
 /// the root. If you want to start with root, you can pass the argument:

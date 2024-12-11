@@ -4,7 +4,7 @@
  * LinkedIn: linkedin.com/in/nvbien2000
  */
 
-part of '../recursive_tree_flutter.dart';
+part of '../unit_tree_flutter.dart';
 
 /// Default values/widgets for [UIProperties]
 class UIConst<T extends AbsNodeType> {
